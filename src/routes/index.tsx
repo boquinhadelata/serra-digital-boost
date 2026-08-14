@@ -14,9 +14,16 @@ import {
   MapPin,
   Clock,
   TrendingUp,
-  Users,
   Sparkles,
+  Search,
+  Settings,
+  Rocket,
+  Shield,
 } from "lucide-react";
+import mockupCardapio from "../assets/mockup-cardapio.jpg";
+import mockupAgendamento from "../assets/mockup-agendamento.jpg";
+import mockupWebsite from "../assets/mockup-website.jpg";
+import mockupHospedagem from "../assets/mockup-hospedagem.jpg";
 
 const WHATSAPP_URL = "https://wa.me/5554999496681";
 const PHONE = "(54) 99949-6681";
@@ -84,6 +91,7 @@ function Header() {
     { label: "Início", href: "#inicio" },
     { label: "Soluções", href: "#solucoes" },
     { label: "Serviços", href: "#servicos" },
+    { label: "Como funciona", href: "#como-funciona" },
     { label: "Depoimentos", href: "#depoimentos" },
     { label: "Contato", href: "#contato" },
   ];
@@ -173,6 +181,17 @@ function Hero() {
               Cardápios Digitais por QR Code, Sistemas de Agendamento Automático para Clínicas e
               Sites de Alta Conversão. Tecnologia sob medida para o comércio local.
             </p>
+
+            <div className="mt-6 inline-flex flex-col items-start gap-2 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4 sm:flex-row sm:items-center">
+              <span className="rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wider text-graphite">
+                A partir de
+              </span>
+              <span className="font-display text-2xl font-bold text-graphite">
+                R$ 390
+              </span>
+              <span className="text-sm text-slate-soft">implantação de cardápio digital</span>
+            </div>
+
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <WhatsAppButton size="lg" />
               <a
@@ -316,25 +335,33 @@ const services = [
     title: "Cardápios Digitais com QR Code",
     description:
       "Substitua cardápios de papel por uma versão digital, rápida e sempre atualizada. O cliente escaneia e pede sem esperar.",
+    price: "R$ 390 (implantação) + R$ 59/mês",
     icon: QrCode,
+    image: mockupCardapio,
   },
   {
     title: "Sistemas de Agendamento Online",
     description:
       "Permita que pacientes e clientes marquem horários a qualquer momento. Confirmações automáticas e lembretes reduzem faltas.",
+    price: "R$ 490 (implantação) + R$ 79/mês",
     icon: CalendarDays,
+    image: mockupAgendamento,
   },
   {
     title: "Websites & Landing Pages",
     description:
       "Sites modernos, rápidos e otimizados para Google. Convertam visitantes em clientes com uma presença digital profissional.",
+    price: "R$ 690",
     icon: Globe,
+    image: mockupWebsite,
   },
   {
-    title: "Automação de Atendimento WhatsApp",
+    title: "Manutenção & Hospedagem",
     description:
-      "Respostas automáticas, fluxos de atendimento e organização de conversas para nunca mais perder uma venda no WhatsApp.",
-    icon: MessageCircle,
+      "Hospedagem segura, backups automáticos, atualizações e monitoramento para seu site ou sistema funcionando sem parar.",
+    price: "R$ 150/mês",
+    icon: Shield,
+    image: mockupHospedagem,
   },
 ];
 
@@ -355,15 +382,101 @@ function Services() {
           {services.map((service) => (
             <div
               key={service.title}
-              className="flex flex-col rounded-3xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-lg"
+              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-lg"
             >
-              <div className="mb-5 grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald/10 text-emerald">
-                <service.icon size={24} />
+              <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute left-3 top-3 rounded-full bg-graphite/90 px-3 py-1.5 text-xs font-bold text-gold backdrop-blur-sm">
+                  A partir de
+                </div>
               </div>
-              <h3 className="font-display text-lg font-bold text-graphite">{service.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-soft">
-                {service.description}
-              </p>
+              <div className="flex flex-1 flex-col p-6">
+                <div className="mb-4 grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald/10 text-emerald">
+                  <service.icon size={24} />
+                </div>
+                <h3 className="font-display text-lg font-bold text-graphite">{service.title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-soft">
+                  {service.description}
+                </p>
+                <div className="mt-5 rounded-2xl border border-gold/30 bg-gold/5 px-4 py-3">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-soft/70">
+                    Investimento
+                  </p>
+                  <p className="mt-0.5 font-display text-lg font-bold text-graphite">
+                    {service.price}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const steps = [
+  {
+    number: "01",
+    title: "Mapeamos sua necessidade",
+    description:
+      "Entendemos seu cardápio, agenda, produtos ou serviços para criar a solução ideal para o seu negócio.",
+    icon: Search,
+  },
+  {
+    number: "02",
+    title: "Configuramos e entregamos",
+    description:
+      "Montamos o sistema, geramos os QR Codes e links personalizados e deixamos tudo pronto para uso.",
+    icon: Settings,
+  },
+  {
+    number: "03",
+    title: "Seu negócio roda sozinho",
+    description:
+      "Em até 48 horas sua operação já está automatizada, recebendo pedidos e agendamentos sem intervenção manual.",
+    icon: Rocket,
+  },
+];
+
+function HowItWorks() {
+  return (
+    <section id="como-funciona" className="bg-muted py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
+            Processo Simples
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-bold text-graphite sm:text-4xl text-balance">
+            Como funciona em 3 passos simples
+          </h2>
+          <p className="mt-4 text-lg text-slate-soft text-balance">
+            Da primeira conversa à operação automatizada, tudo é rápido, transparente e feito por
+            quem entende do comércio local.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {steps.map((step, index) => (
+            <div
+              key={step.number}
+              className="relative rounded-3xl bg-card p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="absolute -top-5 left-8 flex h-10 w-10 items-center justify-center rounded-full bg-emerald font-display text-sm font-bold text-white shadow-lg">
+                {index + 1}
+              </div>
+              <div className="mb-5 mt-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/10 text-gold">
+                <step.icon size={28} />
+              </div>
+              <h3 className="font-display text-xl font-bold text-graphite">{step.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-slate-soft">{step.description}</p>
             </div>
           ))}
         </div>
@@ -516,6 +629,11 @@ function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#como-funciona" className="text-primary-foreground/80 transition-colors hover:text-gold">
+                  Como funciona
+                </a>
+              </li>
+              <li>
                 <a href="#depoimentos" className="text-primary-foreground/80 transition-colors hover:text-gold">
                   Depoimentos
                 </a>
@@ -553,6 +671,7 @@ function Index() {
       <Hero />
       <PainSolutions />
       <Services />
+      <HowItWorks />
       <Testimonials />
       <FinalCTA />
       <Footer />
