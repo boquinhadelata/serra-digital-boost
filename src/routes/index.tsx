@@ -187,7 +187,7 @@ function Hero() {
                 A partir de
               </span>
               <span className="font-display text-2xl font-bold text-graphite">
-                R$ 390
+                R$ 780
               </span>
               <span className="text-sm text-slate-soft">implantação de cardápio digital</span>
             </div>
@@ -335,7 +335,7 @@ const services = [
     title: "Cardápios Digitais com QR Code",
     description:
       "Substitua cardápios de papel por uma versão digital, rápida e sempre atualizada. O cliente escaneia e pede sem esperar.",
-    price: "R$ 390 (implantação) + R$ 59/mês",
+    price: "R$ 780 (implantação) + R$ 118/mês",
     icon: QrCode,
     image: mockupCardapio,
   },
@@ -343,7 +343,7 @@ const services = [
     title: "Sistemas de Agendamento Online",
     description:
       "Permita que pacientes e clientes marquem horários a qualquer momento. Confirmações automáticas e lembretes reduzem faltas.",
-    price: "R$ 490 (implantação) + R$ 79/mês",
+    price: "R$ 980 (implantação) + R$ 158/mês",
     icon: CalendarDays,
     image: mockupAgendamento,
   },
@@ -351,7 +351,7 @@ const services = [
     title: "Websites & Landing Pages",
     description:
       "Sites modernos, rápidos e otimizados para Google. Convertam visitantes em clientes com uma presença digital profissional.",
-    price: "R$ 690",
+    price: "R$ 1.380",
     icon: Globe,
     image: mockupWebsite,
   },
@@ -359,7 +359,7 @@ const services = [
     title: "Manutenção & Hospedagem",
     description:
       "Hospedagem segura, backups automáticos, atualizações e monitoramento para seu site ou sistema funcionando sem parar.",
-    price: "R$ 150/mês",
+    price: "R$ 300/mês",
     icon: Shield,
     image: mockupHospedagem,
   },
