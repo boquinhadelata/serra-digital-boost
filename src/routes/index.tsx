@@ -351,7 +351,7 @@ const services = [
     title: "Websites & Landing Pages",
     description:
       "Sites modernos, rápidos e otimizados para Google. Convertam visitantes em clientes com uma presença digital profissional.",
-    price: "R$ 1.380",
+    price: "R$ 790",
     icon: Globe,
     image: mockupWebsite,
   },
