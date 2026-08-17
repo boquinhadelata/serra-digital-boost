@@ -359,7 +359,7 @@ const services = [
     title: "Manutenção & Hospedagem",
     description:
       "Hospedagem segura, backups automáticos, atualizações e monitoramento para seu site ou sistema funcionando sem parar.",
-    price: "R$ 300/mês",
+    price: "R$ 180/mês",
     icon: Shield,
     image: mockupHospedagem,
   },
