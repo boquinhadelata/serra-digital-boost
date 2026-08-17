@@ -187,7 +187,7 @@ function Hero() {
                 A partir de
               </span>
               <span className="font-display text-2xl font-bold text-graphite">
-                R$ 780
+                R$ 680
               </span>
               <span className="text-sm text-slate-soft">implantação de cardápio digital</span>
             </div>
@@ -335,7 +335,7 @@ const services = [
     title: "Cardápios Digitais com QR Code",
     description:
       "Substitua cardápios de papel por uma versão digital, rápida e sempre atualizada. O cliente escaneia e pede sem esperar.",
-    price: "R$ 780 (implantação) + R$ 118/mês",
+    price: "R$ 680 (implantação) + R$ 80/mês",
     icon: QrCode,
     image: mockupCardapio,
   },
