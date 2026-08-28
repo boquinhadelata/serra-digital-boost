@@ -187,20 +187,19 @@ function Hero() {
               <span className="animate-word-rise" style={{ animationDelay: "0.44s" }}>
                 na
               </span>{" "}
-              <span
-                className="animate-word-rise animate-emerald-glow text-emerald"
-                style={{ animationDelay: "0.57s" }}
-              >
-                Serra Gaúcha
+              <span className="animate-word-rise" style={{ animationDelay: "0.57s" }}>
+                <span className="animate-emerald-glow text-emerald">Serra Gaúcha</span>
               </span>{" "}
               <span className="animate-word-rise" style={{ animationDelay: "0.7s" }}>
                 e
               </span>{" "}
-              <span
-                className="animate-word-rise animate-gold-sheen bg-clip-text text-transparent"
-                style={{ animationDelay: "0.83s", backgroundImage: "linear-gradient(90deg, #b8860b, #f5d78e, #b8860b)" }}
-              >
-                Venda Mais
+              <span className="animate-word-rise" style={{ animationDelay: "0.83s" }}>
+                <span
+                  className="animate-gold-sheen bg-clip-text text-transparent"
+                  style={{ backgroundImage: "linear-gradient(90deg, #b8860b, #f5d78e, #b8860b)" }}
+                >
+                  Venda Mais
+                </span>
               </span>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-slate-soft sm:text-xl text-balance">
