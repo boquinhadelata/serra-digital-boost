@@ -174,9 +174,33 @@ function Hero() {
               <span className="h-1.5 w-1.5 rounded-full bg-emerald" />
               Para Gramado, Canela e Região
             </div>
-            <h1 className="mt-6 font-display text-4xl font-bold leading-[1.1] text-graphite sm:text-5xl lg:text-6xl text-balance">
-              Modernize seu Negócio na{" "}
-              <span className="text-emerald">Serra Gaúcha</span> e Venda Mais
+<h1 className="mt-6 font-display text-4xl font-bold leading-[1.1] text-graphite sm:text-5xl lg:text-6xl text-balance">
+              <span className="animate-word-rise" style={{ animationDelay: "0.05s" }}>
+                Modernize
+              </span>{" "}
+              <span className="animate-word-rise" style={{ animationDelay: "0.18s" }}>
+                seu
+              </span>{" "}
+              <span className="animate-word-rise" style={{ animationDelay: "0.31s" }}>
+                Negócio
+              </span>{" "}
+              <span className="animate-word-rise" style={{ animationDelay: "0.44s" }}>
+                na
+              </span>{" "}
+              <span className="animate-word-rise" style={{ animationDelay: "0.57s" }}>
+                <span className="animate-emerald-glow text-emerald">Serra Gaúcha</span>
+              </span>{" "}
+              <span className="animate-word-rise" style={{ animationDelay: "0.7s" }}>
+                e
+              </span>{" "}
+              <span className="animate-word-rise" style={{ animationDelay: "0.83s" }}>
+                <span
+                  className="animate-gold-sheen bg-clip-text text-transparent"
+                  style={{ backgroundImage: "linear-gradient(90deg, #b8860b, #f5d78e, #b8860b)" }}
+                >
+                  Venda Mais
+                </span>
+              </span>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-slate-soft sm:text-xl text-balance">
               Cardápios Digitais por QR Code, Sistemas de Agendamento Automático para Clínicas e
