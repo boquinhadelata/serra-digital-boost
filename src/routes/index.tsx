@@ -161,7 +161,7 @@ function Hero() {
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden bg-background pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32"
+      className="relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32"
     >
       <div className="absolute inset-0 grain-bg opacity-40" />
       <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-emerald/10 blur-3xl" />
@@ -308,7 +308,7 @@ const painSolutions = [
 
 function PainSolutions() {
   return (
-    <section id="solucoes" className="bg-muted py-20 sm:py-24">
+    <section id="solucoes" className="bg-muted/70 backdrop-blur-sm py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
@@ -392,7 +392,7 @@ const services = [
 
 function Services() {
   return (
-    <section id="servicos" className="bg-background py-20 sm:py-24">
+    <section id="servicos" className="py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
@@ -473,7 +473,7 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <section id="como-funciona" className="bg-muted py-20 sm:py-24">
+    <section id="como-funciona" className="bg-muted/70 backdrop-blur-sm py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
