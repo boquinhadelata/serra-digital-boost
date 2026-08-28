@@ -99,6 +99,21 @@
   }
 }
 
+/* Animação de brilho que varre o logo do cabeçalho */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  55%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.8s ease-in-out infinite;
+}
+
 @utility text-balance {
   text-wrap: balance;
 }
