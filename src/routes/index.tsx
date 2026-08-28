@@ -161,7 +161,7 @@ function Hero() {
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden bg-background pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32"
+      className="relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32"
     >
       <div className="absolute inset-0 grain-bg opacity-40" />
       <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-emerald/10 blur-3xl" />
@@ -308,7 +308,7 @@ const painSolutions = [
 
 function PainSolutions() {
   return (
-    <section id="solucoes" className="bg-muted py-20 sm:py-24">
+    <section id="solucoes" className="bg-muted/70 backdrop-blur-sm py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
@@ -392,7 +392,7 @@ const services = [
 
 function Services() {
   return (
-    <section id="servicos" className="bg-background py-20 sm:py-24">
+    <section id="servicos" className="py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
@@ -473,7 +473,7 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <section id="como-funciona" className="bg-muted py-20 sm:py-24">
+    <section id="como-funciona" className="bg-muted/70 backdrop-blur-sm py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
@@ -689,9 +689,36 @@ function FloatingWhatsApp() {
   );
 }
 
+const SPARKLES = [
+  { left: "12%", top: "18%", delay: "0s", gold: false },
+  { left: "28%", top: "62%", delay: "1.5s", gold: true },
+  { left: "45%", top: "30%", delay: "3s", gold: false },
+  { left: "62%", top: "70%", delay: "2s", gold: true },
+  { left: "78%", top: "22%", delay: "4s", gold: false },
+  { left: "88%", top: "55%", delay: "0.8s", gold: true },
+  { left: "35%", top: "85%", delay: "5s", gold: false },
+  { left: "8%", top: "78%", delay: "2.6s", gold: true },
+];
+
+function AnimatedBackground() {
+  return (
+    <div className="animated-bg" aria-hidden="true">
+      <div className="bg-orb" />
+      {SPARKLES.map((s, i) => (
+        <span
+          key={i}
+          className={`bg-sparkle ${s.gold ? "gold" : ""}`}
+          style={{ left: s.left, top: s.top, animationDelay: s.delay }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function Index() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="relative min-h-screen">
+      <AnimatedBackground />
       <Header />
       <Hero />
       <PainSolutions />
