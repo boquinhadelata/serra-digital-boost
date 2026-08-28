@@ -114,6 +114,62 @@
   animation: shimmer 2.8s ease-in-out infinite;
 }
 
+/* Revelação em cascata de palavras do H1 */
+@keyframes word-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(1.2em) scale(1.1);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-word-rise {
+  display: inline-block;
+  opacity: 0;
+  animation: word-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Brilho esmeralda pulsante no destaque do H1 */
+@keyframes emerald-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transform: translateY(0);
+  }
+  50% {
+    text-shadow: 0 0 24px oklch(0.62 0.18 160 / 0.55);
+    transform: translateY(-2px);
+  }
+}
+
+.animate-emerald-glow {
+  animation: emerald-glow 2.6s ease-in-out infinite;
+}
+
+/* Gradiente dourado animado que percorre o H1 */
+@keyframes gold-sheen {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-gold-sheen {
+  background-size: 200% auto;
+  animation: gold-sheen 5s linear infinite;
+}
+
 @utility text-balance {
   text-wrap: balance;
 }
