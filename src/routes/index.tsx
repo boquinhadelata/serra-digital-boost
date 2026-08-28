@@ -689,9 +689,36 @@ function FloatingWhatsApp() {
   );
 }
 
+const SPARKLES = [
+  { left: "12%", top: "18%", delay: "0s", gold: false },
+  { left: "28%", top: "62%", delay: "1.5s", gold: true },
+  { left: "45%", top: "30%", delay: "3s", gold: false },
+  { left: "62%", top: "70%", delay: "2s", gold: true },
+  { left: "78%", top: "22%", delay: "4s", gold: false },
+  { left: "88%", top: "55%", delay: "0.8s", gold: true },
+  { left: "35%", top: "85%", delay: "5s", gold: false },
+  { left: "8%", top: "78%", delay: "2.6s", gold: true },
+];
+
+function AnimatedBackground() {
+  return (
+    <div className="animated-bg" aria-hidden="true">
+      <div className="bg-orb" />
+      {SPARKLES.map((s, i) => (
+        <span
+          key={i}
+          className={`bg-sparkle ${s.gold ? "gold" : ""}`}
+          style={{ left: s.left, top: s.top, animationDelay: s.delay }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function Index() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="relative min-h-screen">
+      <AnimatedBackground />
       <Header />
       <Hero />
       <PainSolutions />
