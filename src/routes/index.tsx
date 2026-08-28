@@ -96,12 +96,13 @@ function Header() {
     { label: "Contato", href: "#contato" },
   ];
 
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+return (
+    <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50 animate-fade-in">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <a href="#inicio" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-graphite text-gold">
-            <Sparkles size={18} strokeWidth={2.5} />
+        <a href="#inicio" className="group flex items-center gap-2.5">
+          <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg bg-graphite text-gold">
+            <Sparkles size={18} strokeWidth={2.5} className="animate-[pulse_2.4s_ease-in-out_infinite]" />
+            <span className="absolute inset-0 -translate-x-full animate-[shimmer_2.8s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           </span>
           <span className="font-display text-xl font-bold tracking-tight text-graphite">
             Agiliza Serra
@@ -113,14 +114,14 @@ function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-soft transition-colors hover:text-graphite"
+              className="story-link text-sm font-medium text-slate-soft transition-colors hover:text-graphite"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:block animate-scale-in">
           <WhatsAppButton size="sm" />
         </div>
 
@@ -134,7 +135,7 @@ function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-border/50 bg-background md:hidden">
+        <div className="border-t border-border/50 bg-background animate-fade-in md:hidden">
           <nav className="flex flex-col gap-2 px-4 py-4">
             {navLinks.map((link) => (
               <a
