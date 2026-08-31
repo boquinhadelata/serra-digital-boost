@@ -20,6 +20,7 @@ import {
   Rocket,
   Shield,
 } from "lucide-react";
+import { Reveal, TiltCard, ScrollProgress, CountUp } from "../components/motion";
 import mockupCardapio from "../assets/mockup-cardapio.jpg";
 import mockupAgendamento from "../assets/mockup-agendamento.jpg";
 import mockupWebsite from "../assets/mockup-website.jpg";
@@ -202,12 +203,12 @@ function Hero() {
                 </span>
               </span>
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-slate-soft sm:text-xl text-balance">
+            <p className="reveal reveal-blur is-visible mt-6 text-lg leading-relaxed text-slate-soft sm:text-xl text-balance" style={{ transitionDelay: "800ms" }}>
               Cardápios Digitais por QR Code, Sistemas de Agendamento Automático para Clínicas e
               Sites de Alta Conversão. Tecnologia sob medida para o comércio local.
             </p>
 
-            <div className="mt-6 inline-flex flex-col items-start gap-2 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4 sm:flex-row sm:items-center">
+            <Reveal delay={900} variant="scale" className="mt-6 inline-flex flex-col items-start gap-2 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4 sm:flex-row sm:items-center">
               <span className="rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wider text-graphite">
                 A partir de
               </span>
@@ -215,19 +216,19 @@ function Hero() {
                 R$ 680
               </span>
               <span className="text-sm text-slate-soft">implantação de cardápio digital</span>
-            </div>
+            </Reveal>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <Reveal delay={1050} className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <WhatsAppButton size="lg" />
               <a
                 href="#solucoes"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-graphite/20 px-6 py-4 text-sm font-semibold text-graphite transition-colors hover:bg-graphite hover:text-primary-foreground"
               >
                 Ver soluções
-                <ArrowRight size={18} />
+                <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
               </a>
-            </div>
-            <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-slate-soft">
+            </Reveal>
+            <Reveal delay={1200} className="mt-8 flex flex-wrap items-center gap-6 text-sm text-slate-soft">
               <span className="inline-flex items-center gap-1.5">
                 <Check size={16} className="text-emerald" />
                 Atendimento local
@@ -240,12 +241,12 @@ function Hero() {
                 <Check size={16} className="text-emerald" />
                 Resultados mensuráveis
               </span>
-            </div>
+            </Reveal>
           </div>
 
-          <div className="relative hidden lg:block">
-            <div className="relative rounded-3xl border border-border/60 bg-card p-8 shadow-2xl shadow-graphite/5">
-              <div className="absolute -top-6 -right-6 rounded-2xl bg-graphite p-4 text-gold shadow-xl">
+          <Reveal variant="right" delay={350} className="relative hidden lg:block">
+            <div className="relative rounded-3xl border border-border/60 bg-card p-8 shadow-2xl shadow-graphite/5 animate-soft-float">
+              <div className="absolute -top-6 -right-6 rounded-2xl bg-graphite p-4 text-gold shadow-xl animate-soft-float" style={{ animationDelay: "1.2s" }}>
                 <TrendingUp size={32} />
               </div>
               <div className="grid gap-6">
@@ -278,7 +279,7 @@ function Hero() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -310,7 +311,7 @@ function PainSolutions() {
   return (
     <section id="solucoes" className="bg-muted/70 backdrop-blur-sm py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+        <Reveal className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
             Dor x Solução
           </span>
@@ -321,14 +322,12 @@ function PainSolutions() {
             Entendemos a realidade de Gramado, Canela e região. Cada solução é pensada para gerar
             mais agilidade, menos desperdício e mais vendas.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {painSolutions.map((item) => (
-            <div
-              key={item.segment}
-              className="group relative rounded-3xl bg-card p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-graphite/5"
-            >
+          {painSolutions.map((item, index) => (
+            <Reveal key={item.segment} variant="up" delay={index * 140}>
+            <TiltCard className="group relative h-full overflow-hidden rounded-3xl bg-card p-8 shadow-sm">
               <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/10 text-gold transition-colors group-hover:bg-graphite group-hover:text-gold">
                 <item.icon size={28} />
               </div>
@@ -347,7 +346,8 @@ function PainSolutions() {
                   <p className="text-base font-medium text-graphite">{item.solution}</p>
                 </div>
               </div>
-            </div>
+            </TiltCard>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -394,21 +394,20 @@ function Services() {
   return (
     <section id="servicos" className="py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+        <Reveal className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
             Nossos Serviços
           </span>
           <h2 className="mt-3 font-display text-3xl font-bold text-graphite sm:text-4xl text-balance">
             Tecnologia pronta para impulsionar seu negócio
           </h2>
-        </div>
+          <span className="animate-underline-draw mx-auto mt-6 block h-0.5 w-32 rounded-full emerald-gradient" />
+        </Reveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald/30 hover:shadow-lg"
-            >
+          {services.map((service, index) => (
+            <Reveal key={service.title} variant="blur" delay={index * 130}>
+            <TiltCard intensity={6} className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card">
               <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={service.image}
@@ -416,8 +415,9 @@ function Services() {
                   loading="lazy"
                   width={1024}
                   height={1024}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-graphite/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="absolute left-3 top-3 rounded-full bg-graphite/90 px-3 py-1.5 text-xs font-bold text-gold backdrop-blur-sm">
                   A partir de
                 </div>
@@ -439,7 +439,8 @@ function Services() {
                   </p>
                 </div>
               </div>
-            </div>
+            </TiltCard>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -475,7 +476,7 @@ function HowItWorks() {
   return (
     <section id="como-funciona" className="bg-muted/70 backdrop-blur-sm py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+        <Reveal className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald">
             Processo Simples
           </span>
@@ -486,14 +487,12 @@ function HowItWorks() {
             Da primeira conversa à operação automatizada, tudo é rápido, transparente e feito por
             quem entende do comércio local.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {steps.map((step, index) => (
-            <div
-              key={step.number}
-              className="relative rounded-3xl bg-card p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            >
+            <Reveal key={step.number} variant={index === 0 ? "left" : index === 2 ? "right" : "up"} delay={index * 160}>
+            <TiltCard className="relative h-full rounded-3xl bg-card p-8 shadow-sm">
               <div className="absolute -top-5 left-8 flex h-10 w-10 items-center justify-center rounded-full bg-emerald font-display text-sm font-bold text-white shadow-lg">
                 {index + 1}
               </div>
@@ -502,7 +501,8 @@ function HowItWorks() {
               </div>
               <h3 className="font-display text-xl font-bold text-graphite">{step.title}</h3>
               <p className="mt-3 text-base leading-relaxed text-slate-soft">{step.description}</p>
-            </div>
+            </TiltCard>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -532,21 +532,19 @@ function Testimonials() {
   return (
     <section id="depoimentos" className="bg-graphite py-20 text-primary-foreground sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+        <Reveal className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-gold">
             Prova Social
           </span>
           <h2 className="mt-3 font-display text-3xl font-bold text-primary-foreground sm:text-4xl text-balance">
             O que dizem os comerciantes da região
           </h2>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <div
-              key={t.name}
-              className="relative rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
-            >
+          {testimonials.map((t, index) => (
+            <Reveal key={t.name} variant="scale" delay={index * 150}>
+            <TiltCard className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
               <Quote className="text-gold/60" size={32} />
               <p className="mt-4 text-base leading-relaxed text-primary-foreground/90">
                 {t.text}
@@ -560,7 +558,8 @@ function Testimonials() {
                   <p className="text-sm text-primary-foreground/70">{t.business}</p>
                 </div>
               </div>
-            </div>
+            </TiltCard>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -571,7 +570,7 @@ function Testimonials() {
 function FinalCTA() {
   return (
     <section className="bg-emerald py-16 sm:py-20">
-      <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <Reveal variant="scale" className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <h2 className="font-display text-3xl font-bold text-white sm:text-4xl text-balance">
           Pronto para modernizar seu negócio na Serra Gaúcha?
         </h2>
@@ -586,7 +585,7 @@ function FinalCTA() {
             Falar no WhatsApp Agora
           </WhatsAppButton>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -681,7 +680,7 @@ function FloatingWhatsApp() {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald text-white shadow-lg shadow-emerald/30 transition-all duration-300 hover:scale-110 hover:shadow-xl"
+      className="animate-halo fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald text-white shadow-lg shadow-emerald/30 transition-all duration-300 hover:scale-110 hover:shadow-xl"
       aria-label="Chamar no WhatsApp"
     >
       <MessageCircle size={28} />
@@ -715,12 +714,72 @@ function AnimatedBackground() {
   );
 }
 
+const MARQUEE_ITEMS = [
+  "Cardápios Digitais QR Code",
+  "Agendamento Online 24/7",
+  "Sites de Alta Conversão",
+  "Manutenção & Hospedagem",
+  "Entrega em até 48h",
+  "Atendimento local na Serra",
+];
+
+function Marquee() {
+  return (
+    <div className="marquee-mask border-y border-border/60 bg-graphite py-4">
+      <div className="marquee">
+        {[0, 1].map((copy) => (
+          <div key={copy} className="flex shrink-0 items-center">
+            {MARQUEE_ITEMS.map((item) => (
+              <span
+                key={`${copy}-${item}`}
+                className="flex items-center gap-4 whitespace-nowrap px-8 font-display text-lg font-semibold text-primary-foreground/80"
+              >
+                {item}
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const STATS = [
+  { value: 48, suffix: "h", label: "Entrega média do projeto" },
+  { value: 30, suffix: "%", label: "Mais agilidade no atendimento" },
+  { value: 24, suffix: "/7", label: "Agendamentos sem parar" },
+  { value: 100, suffix: "%", label: "Foco no comércio da Serra" },
+];
+
+function Stats() {
+  return (
+    <section className="py-16 sm:py-20">
+      <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+        {STATS.map((stat, index) => (
+          <Reveal key={stat.label} variant="up" delay={index * 120}>
+            <div className="rounded-3xl border border-border/60 bg-card/70 p-8 text-center backdrop-blur-sm">
+              <p className="font-display text-4xl font-bold text-graphite">
+                <CountUp to={stat.value} suffix={stat.suffix} />
+              </p>
+              <p className="mt-2 text-sm text-slate-soft">{stat.label}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <main className="relative min-h-screen">
+      <ScrollProgress />
       <AnimatedBackground />
       <Header />
       <Hero />
+      <Marquee />
+      <Stats />
       <PainSolutions />
       <Services />
       <HowItWorks />
