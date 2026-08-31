@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system Agiliza Serra.
+ * Design system Agiliza Serra — dark futurista / minimalista.
  */
 
 @theme inline {
@@ -38,48 +38,44 @@
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
 
-  /* Tokens próprios da Agiliza Serra */
-  --color-graphite: var(--graphite);
-  --color-gold: var(--gold);
+  /* Tokens proprietários */
+  --color-ink: var(--ink);
+  --color-electric: var(--electric);
+  --color-violet: var(--violet-neon);
   --color-emerald: var(--emerald);
-  --color-cream: var(--cream);
-  --color-slate-soft: var(--slate-soft);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 1rem;
 
-  /* Cores em oklch */
-  --background: oklch(0.98 0.005 270);
-  --foreground: oklch(0.2 0.04 270);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.04 270);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.04 270);
-  --primary: oklch(0.18 0.05 270);
-  --primary-foreground: oklch(0.98 0.005 270);
-  --secondary: oklch(0.96 0.01 270);
-  --secondary-foreground: oklch(0.2 0.04 270);
-  --muted: oklch(0.94 0.01 270);
-  --muted-foreground: oklch(0.5 0.04 270);
-  --accent: oklch(0.62 0.18 160);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.85 0.02 270);
-  --input: oklch(0.85 0.02 270);
-  --ring: oklch(0.62 0.18 160);
+  --background: oklch(0.16 0.02 258);
+  --foreground: oklch(0.97 0.005 260);
+  --card: oklch(0.21 0.025 258);
+  --card-foreground: oklch(0.97 0.005 260);
+  --popover: oklch(0.19 0.025 258);
+  --popover-foreground: oklch(0.97 0.005 260);
+  --primary: oklch(0.68 0.19 255);
+  --primary-foreground: oklch(0.14 0.02 258);
+  --secondary: oklch(0.26 0.03 258);
+  --secondary-foreground: oklch(0.97 0.005 260);
+  --muted: oklch(0.24 0.025 258);
+  --muted-foreground: oklch(0.72 0.02 258);
+  --accent: oklch(0.7 0.17 300);
+  --accent-foreground: oklch(0.14 0.02 258);
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.32 0.03 258);
+  --input: oklch(0.32 0.03 258);
+  --ring: oklch(0.68 0.19 255);
 
-  /* Tokens proprietários */
-  --graphite: oklch(0.18 0.05 270);
-  --gold: oklch(0.72 0.14 90);
-  --emerald: oklch(0.62 0.18 160);
-  --cream: oklch(0.98 0.005 270);
-  --slate-soft: oklch(0.4 0.04 270);
+  --ink: oklch(0.16 0.02 258);
+  --electric: oklch(0.68 0.19 255);
+  --violet-neon: oklch(0.7 0.17 300);
+  --emerald: oklch(0.75 0.16 165);
 
-  --font-display: "Playfair Display", Georgia, serif;
+  --font-display: "Space Grotesk", "Plus Jakarta Sans", system-ui, sans-serif;
   --font-body: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
 }
 
@@ -88,372 +84,167 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    letter-spacing: -0.03em;
   }
-}
 
-/* Animação de brilho que varre o logo do cabeçalho */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
+  ::selection {
+    background: oklch(0.68 0.19 255 / 0.35);
   }
-  55%,
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.animate-shimmer {
-  animation: shimmer 2.8s ease-in-out infinite;
-}
-
-/* Revelação em cascata de palavras do H1 */
-@keyframes word-rise {
-  0% {
-    opacity: 0;
-    transform: translateY(1.2em) scale(1.1);
-    filter: blur(8px);
-  }
-  60% {
-    opacity: 1;
-    filter: blur(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-.animate-word-rise {
-  display: inline-block;
-  opacity: 0;
-  animation: word-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-/* Brilho esmeralda pulsante no destaque do H1 */
-@keyframes emerald-glow {
-  0%,
-  100% {
-    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    transform: translateY(0);
-  }
-  50% {
-    text-shadow: 0 0 24px oklch(0.62 0.18 160 / 0.55);
-    transform: translateY(-2px);
-  }
-}
-
-.animate-emerald-glow {
-  animation: emerald-glow 2.6s ease-in-out infinite;
-}
-
-/* Gradiente dourado animado que percorre o H1 */
-@keyframes gold-sheen {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-.animate-gold-sheen {
-  background-size: 200% auto;
-  animation: gold-sheen 5s linear infinite;
 }
 
 @utility text-balance {
   text-wrap: balance;
 }
 
-@utility grain-bg {
-  background-image: radial-gradient(circle at 1px 1px, var(--color-border) 1px, transparent 0);
-  background-size: 24px 24px;
+/* Superfície de vidro fosco */
+@utility glass {
+  background: linear-gradient(
+    150deg,
+    oklch(1 0 0 / 0.07),
+    oklch(1 0 0 / 0.02)
+  );
+  border: 1px solid oklch(1 0 0 / 0.09);
+  backdrop-filter: blur(18px) saturate(140%);
 }
 
-@utility gold-gradient {
-  background: linear-gradient(135deg, oklch(0.72 0.14 90), oklch(0.65 0.12 95));
+@utility grid-lines {
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-@utility emerald-gradient {
-  background: linear-gradient(135deg, oklch(0.62 0.18 160), oklch(0.52 0.16 165));
+@utility gradient-text {
+  background: linear-gradient(
+    100deg,
+    oklch(0.97 0.005 260),
+    oklch(0.68 0.19 255) 45%,
+    oklch(0.7 0.17 300) 70%,
+    oklch(0.75 0.16 165)
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sheen 7s linear infinite;
 }
 
-/* Fundo animado: orbes de aurora em grafite, dourado e esmeralda */
-@keyframes aurora-drift-1 {
-  0%, 100% {
-    transform: translate(-10%, -5%) scale(1) rotate(0deg);
-  }
-  33% {
-    transform: translate(8%, 10%) scale(1.15) rotate(8deg);
-  }
-  66% {
-    transform: translate(-6%, 14%) scale(0.95) rotate(-6deg);
-  }
+@keyframes sheen {
+  0% { background-position: 0% center; }
+  100% { background-position: 220% center; }
 }
 
-@keyframes aurora-drift-2 {
-  0%, 100% {
-    transform: translate(10%, 8%) scale(1.05) rotate(0deg);
-  }
-  50% {
-    transform: translate(-12%, -10%) scale(1.2) rotate(-10deg);
-  }
+/* Auroras de fundo */
+@keyframes aurora-1 {
+  0%, 100% { transform: translate(-8%, -6%) scale(1); }
+  50% { transform: translate(10%, 12%) scale(1.2); }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: translate(8%, 6%) scale(1.1); }
+  50% { transform: translate(-10%, -12%) scale(0.95); }
 }
 
-@keyframes aurora-drift-3 {
-  0%, 100% {
-    transform: translate(0%, 0%) scale(1);
-  }
-  50% {
-    transform: translate(10%, -12%) scale(1.1);
-  }
-}
-
-@keyframes gradient-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes float-sparkle {
-  0%, 100% {
-    opacity: 0.15;
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translateY(-30px) scale(1.3);
-  }
-}
-
-.animated-bg {
+.aurora {
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background: linear-gradient(
-    160deg,
-    oklch(0.985 0.008 270),
-    oklch(0.96 0.015 260) 30%,
-    oklch(0.97 0.02 150) 60%,
-    oklch(0.96 0.02 90) 100%
-  );
-  background-size: 300% 300%;
-  animation: gradient-flow 18s ease-in-out infinite;
+  background: radial-gradient(120% 90% at 50% -10%, oklch(0.26 0.06 265), oklch(0.14 0.02 258) 60%);
 }
 
-.animated-bg::before {
+.aurora::before,
+.aurora::after {
   content: "";
   position: absolute;
   width: 55vmax;
   height: 55vmax;
-  left: -15vmax;
-  top: -20vmax;
   border-radius: 50%;
-  background: radial-gradient(circle, oklch(0.62 0.18 160 / 0.28), transparent 65%);
-  filter: blur(40px);
-  animation: aurora-drift-1 22s ease-in-out infinite;
+  filter: blur(90px);
 }
 
-.animated-bg::after {
-  content: "";
+.aurora::before {
+  left: -18vmax;
+  top: -18vmax;
+  background: radial-gradient(circle, oklch(0.68 0.19 255 / 0.35), transparent 65%);
+  animation: aurora-1 24s ease-in-out infinite;
+}
+
+.aurora::after {
+  right: -20vmax;
+  top: 25vh;
+  background: radial-gradient(circle, oklch(0.7 0.17 300 / 0.3), transparent 65%);
+  animation: aurora-2 30s ease-in-out infinite;
+}
+
+.aurora .orb {
   position: absolute;
+  left: 30vw;
+  bottom: -30vmax;
   width: 50vmax;
   height: 50vmax;
-  right: -18vmax;
-  top: 20vh;
   border-radius: 50%;
-  background: radial-gradient(circle, oklch(0.72 0.14 90 / 0.24), transparent 65%);
-  filter: blur(40px);
-  animation: aurora-drift-2 26s ease-in-out infinite;
+  filter: blur(100px);
+  background: radial-gradient(circle, oklch(0.75 0.16 165 / 0.22), transparent 65%);
+  animation: aurora-1 34s ease-in-out infinite reverse;
 }
 
-.animated-bg .bg-orb {
-  position: absolute;
-  width: 45vmax;
-  height: 45vmax;
-  left: 25vw;
-  bottom: -25vmax;
-  border-radius: 50%;
-  background: radial-gradient(circle, oklch(0.3 0.08 270 / 0.14), transparent 65%);
-  filter: blur(50px);
-  animation: aurora-drift-3 30s ease-in-out infinite;
+/* Brilho que percorre o botão principal no hover */
+@keyframes btn-shine {
+  from { transform: translateX(-120%) skewX(-18deg); }
+  to { transform: translateX(220%) skewX(-18deg); }
 }
 
-.animated-bg .bg-sparkle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: oklch(0.62 0.18 160 / 0.5);
-  animation: float-sparkle 8s ease-in-out infinite;
-}
-
-.animated-bg .bg-sparkle.gold {
-  background: oklch(0.72 0.14 90 / 0.55);
-}
-
-/* ============================================================
-   Camada de movimento premium (scroll reveal, tilt 3D, marquee)
-   ============================================================ */
-
-.reveal {
-  opacity: 0;
-  will-change: transform, opacity, filter;
-  transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.reveal-up {
-  transform: translateY(46px);
-}
-.reveal-left {
-  transform: translateX(-52px);
-}
-.reveal-right {
-  transform: translateX(52px);
-}
-.reveal-scale {
-  transform: scale(0.92) translateY(24px);
-}
-.reveal-blur {
-  transform: translateY(28px);
-  filter: blur(14px);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-  filter: blur(0);
-}
-
-/* Cartão com inclinação 3D e reflexo que segue o cursor */
-.tilt-card {
+.btn-shine {
   position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
-}
-
-.tilt-card:hover {
-  box-shadow: 0 30px 60px -30px oklch(0.18 0.05 270 / 0.35);
-}
-
-.tilt-spotlight {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  background: radial-gradient(
-    340px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    oklch(1 0 0 / 0.35),
-    transparent 60%
-  );
-}
-
-.tilt-card:hover .tilt-spotlight {
-  opacity: 1;
-}
-
-/* Barra de progresso de leitura */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  z-index: 60;
-  pointer-events: none;
-}
-
-.scroll-progress span {
-  display: block;
-  height: 100%;
-  width: 100%;
-  transform-origin: left center;
-  transform: scaleX(0);
-  background: linear-gradient(
-    90deg,
-    oklch(0.62 0.18 160),
-    oklch(0.72 0.14 90),
-    oklch(0.62 0.18 160)
-  );
-  box-shadow: 0 0 14px oklch(0.62 0.18 160 / 0.6);
-}
-
-/* Faixa infinita de marcas / frases */
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 32s linear infinite;
-}
-
-.marquee-mask {
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  isolation: isolate;
 }
 
-.marquee-mask:hover .marquee {
-  animation-play-state: paused;
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.45), transparent);
+  transform: translateX(-120%) skewX(-18deg);
+  opacity: 0;
 }
 
-/* Flutuação leve para mockups e badges */
+.btn-shine:hover::after {
+  opacity: 1;
+  animation: btn-shine 0.9s ease-out;
+}
+
+/* Flutuação suave */
 @keyframes soft-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
 }
 
 .animate-soft-float {
-  animation: soft-float 6s ease-in-out infinite;
+  animation: soft-float 7s ease-in-out infinite;
 }
 
-/* Halo pulsante para o botão flutuante do WhatsApp */
+/* Halo pulsante do botão de WhatsApp */
 @keyframes halo-pulse {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.7;
-  }
-  70% {
-    transform: scale(1.55);
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { transform: scale(0.9); opacity: 0.7; }
+  70% { transform: scale(1.6); opacity: 0; }
+  100% { opacity: 0; }
 }
 
 .animate-halo::after {
@@ -461,35 +252,35 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: oklch(0.62 0.18 160 / 0.55);
+  background: oklch(0.75 0.16 165 / 0.5);
   animation: halo-pulse 2.4s ease-out infinite;
   z-index: -1;
 }
 
-/* Sublinhado que se desenha ao revelar o título */
-@keyframes underline-draw {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+/* Faixa infinita */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-.is-visible .animate-underline-draw {
-  transform-origin: left center;
-  animation: underline-draw 1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 34s linear infinite;
+}
+
+.marquee-mask {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal,
   .marquee,
   .animate-soft-float,
-  .animate-halo::after {
+  .animate-halo::after,
+  .aurora::before,
+  .aurora::after,
+  .aurora .orb {
     animation: none !important;
-    transition: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
   }
 }
