@@ -308,3 +308,188 @@
 .animated-bg .bg-sparkle.gold {
   background: oklch(0.72 0.14 90 / 0.55);
 }
+
+/* ============================================================
+   Camada de movimento premium (scroll reveal, tilt 3D, marquee)
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-up {
+  transform: translateY(46px);
+}
+.reveal-left {
+  transform: translateX(-52px);
+}
+.reveal-right {
+  transform: translateX(52px);
+}
+.reveal-scale {
+  transform: scale(0.92) translateY(24px);
+}
+.reveal-blur {
+  transform: translateY(28px);
+  filter: blur(14px);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* Cartão com inclinação 3D e reflexo que segue o cursor */
+.tilt-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+}
+
+.tilt-card:hover {
+  box-shadow: 0 30px 60px -30px oklch(0.18 0.05 270 / 0.35);
+}
+
+.tilt-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    340px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    oklch(1 0 0 / 0.35),
+    transparent 60%
+  );
+}
+
+.tilt-card:hover .tilt-spotlight {
+  opacity: 1;
+}
+
+/* Barra de progresso de leitura */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(
+    90deg,
+    oklch(0.62 0.18 160),
+    oklch(0.72 0.14 90),
+    oklch(0.62 0.18 160)
+  );
+  box-shadow: 0 0 14px oklch(0.62 0.18 160 / 0.6);
+}
+
+/* Faixa infinita de marcas / frases */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee-mask {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee-mask:hover .marquee {
+  animation-play-state: paused;
+}
+
+/* Flutuação leve para mockups e badges */
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-soft-float {
+  animation: soft-float 6s ease-in-out infinite;
+}
+
+/* Halo pulsante para o botão flutuante do WhatsApp */
+@keyframes halo-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-halo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: oklch(0.62 0.18 160 / 0.55);
+  animation: halo-pulse 2.4s ease-out infinite;
+  z-index: -1;
+}
+
+/* Sublinhado que se desenha ao revelar o título */
+@keyframes underline-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.is-visible .animate-underline-draw {
+  transform-origin: left center;
+  animation: underline-draw 1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .marquee,
+  .animate-soft-float,
+  .animate-halo::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
