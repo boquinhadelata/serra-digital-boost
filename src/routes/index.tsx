@@ -575,9 +575,8 @@ function Footer() {
 function Home() {
   return (
     <div className="relative min-h-screen">
-      <div className="aurora" aria-hidden="true">
-        <span className="orb" />
-      </div>
+      <BokehBackground />
+
       <Header />
       <main>
         <Hero />
