@@ -128,10 +128,25 @@ export function BokehBackground() {
     };
     window.addEventListener("resize", onResize);
 
+    const onPointerMove = (e: PointerEvent) => {
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
+      pointer.active = e.pointerType !== "touch";
+    };
+    const onPointerLeave = () => {
+      pointer.active = false;
+    };
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerleave", onPointerLeave);
+    window.addEventListener("blur", onPointerLeave);
+
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(resizeTimer);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerleave", onPointerLeave);
+      window.removeEventListener("blur", onPointerLeave);
     };
   }, []);
 
