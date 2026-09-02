@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 
 import { Reveal, TiltCard } from "@/components/reveal";
+import { BokehBackground } from "@/components/bokeh-background";
 import mockupWebsite from "@/assets/mockup-website.jpg";
 import mockupCardapio from "@/assets/mockup-cardapio.jpg";
 import mockupAgendamento from "@/assets/mockup-agendamento.jpg";
@@ -575,9 +576,8 @@ function Footer() {
 function Home() {
   return (
     <div className="relative min-h-screen">
-      <div className="aurora" aria-hidden="true">
-        <span className="orb" />
-      </div>
+      <BokehBackground />
+
       <Header />
       <main>
         <Hero />
