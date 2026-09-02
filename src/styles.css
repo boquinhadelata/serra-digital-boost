@@ -178,8 +178,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(75% 55% at 50% 45%, transparent 0%, rgb(10 14 23 / 0.55) 100%),
-    linear-gradient(180deg, rgb(10 14 23 / 0.6) 0%, transparent 22%, transparent 78%, rgb(10 14 23 / 0.75) 100%);
+    radial-gradient(70% 55% at 50% 45%, transparent 0%, rgb(10 14 23 / 0.35) 100%),
+    linear-gradient(180deg, rgb(10 14 23 / 0.35) 0%, transparent 25%, transparent 80%, rgb(10 14 23 / 0.55) 100%);
 }
 
 .aurora {

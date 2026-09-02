@@ -39,17 +39,17 @@ export function BokehBackground() {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.round(Math.min(46, Math.max(16, (width * height) / 34000)));
+      const count = Math.round(Math.min(46, Math.max(16, (width * height) / 26000)));
       particles = Array.from({ length: count }, () => {
         const depth = Math.random();
         return {
           x: Math.random() * width,
           y: Math.random() * height,
-          r: 6 + depth * 60,
+          r: 10 + depth * 80,
           speed: 0.08 + (1 - depth) * 0.35,
           drift: 0.25 + Math.random() * 0.6,
           phase: Math.random() * Math.PI * 2,
-          alpha: 0.2 + Math.random() * 0.5,
+          alpha: 0.3 + Math.random() * 0.4,
           hue: HUES[Math.floor(Math.random() * HUES.length)]!,
           blur: 4 + depth * 26,
         };
