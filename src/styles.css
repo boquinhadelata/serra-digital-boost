@@ -157,6 +157,31 @@
   50% { transform: translate(-10%, -12%) scale(0.95); }
 }
 
+/* Fundo bokeh animado */
+.bokeh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% -10%, #131a29 0%, #0b0f19 45%, #0a0e17 100%);
+}
+
+.bokeh-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.bokeh-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(75% 55% at 50% 45%, transparent 0%, rgb(10 14 23 / 0.55) 100%),
+    linear-gradient(180deg, rgb(10 14 23 / 0.6) 0%, transparent 22%, transparent 78%, rgb(10 14 23 / 0.75) 100%);
+}
+
 .aurora {
   position: fixed;
   inset: 0;
@@ -165,6 +190,7 @@
   pointer-events: none;
   background: radial-gradient(120% 90% at 50% -10%, oklch(0.26 0.06 265), oklch(0.14 0.02 258) 60%);
 }
+
 
 .aurora::before,
 .aurora::after {
