@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 
 import { Reveal, TiltCard } from "@/components/reveal";
+import { BokehBackground } from "@/components/bokeh-background";
 import mockupWebsite from "@/assets/mockup-website.jpg";
 import mockupCardapio from "@/assets/mockup-cardapio.jpg";
 import mockupAgendamento from "@/assets/mockup-agendamento.jpg";
