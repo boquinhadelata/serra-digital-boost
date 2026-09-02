@@ -10,6 +10,8 @@ type Particle = {
   alpha: number;
   hue: number;
   blur: number;
+  ox: number;
+  oy: number;
 };
 
 const HUES = [28, 38, 45]; // laranja, âmbar, dourado
