@@ -54,9 +54,15 @@ export function BokehBackground() {
           alpha: 0.3 + Math.random() * 0.4,
           hue: HUES[Math.floor(Math.random() * HUES.length)]!,
           blur: 4 + depth * 26,
+          ox: 0,
+          oy: 0,
         };
       });
     };
+
+    const pointer = { x: -9999, y: -9999, active: false };
+    const RADIUS = 260;
+    const FORCE = 90;
 
     const draw = (t: number) => {
       ctx.clearRect(0, 0, width, height);
@@ -71,11 +77,31 @@ export function BokehBackground() {
             p.x = Math.random() * width;
           }
         }
-        const x = p.x + Math.sin(p.phase + t * 0.00012) * p.drift * 18;
+        const baseX = p.x + Math.sin(p.phase + t * 0.00012) * p.drift * 18;
+
+        // Repulsão suave em relação ao cursor
+        let tx = 0;
+        let ty = 0;
+        if (pointer.active && !reduced) {
+          const dx = baseX - pointer.x;
+          const dy = p.y - pointer.y;
+          const dist = Math.hypot(dx, dy) || 1;
+          if (dist < RADIUS) {
+            const strength = (1 - dist / RADIUS) ** 2;
+            const depthFactor = 0.4 + (1 - Math.min(p.r / 90, 1)) * 0.8;
+            tx = (dx / dist) * FORCE * strength * depthFactor;
+            ty = (dy / dist) * FORCE * strength * depthFactor;
+          }
+        }
+        p.ox += (tx - p.ox) * 0.08;
+        p.oy += (ty - p.oy) * 0.08;
+
+        const x = baseX + p.ox;
+        const y = p.y + p.oy;
         const pulse = reduced ? 1 : 0.85 + Math.sin(p.phase * 2) * 0.15;
         const a = p.alpha * pulse;
 
-        const grad = ctx.createRadialGradient(x, p.y, 0, x, p.y, p.r);
+        const grad = ctx.createRadialGradient(x, y, 0, x, y, p.r);
         grad.addColorStop(0, `hsla(${p.hue}, 100%, 62%, ${a})`);
         grad.addColorStop(0.45, `hsla(${p.hue}, 100%, 55%, ${a * 0.45})`);
         grad.addColorStop(1, `hsla(${p.hue}, 100%, 50%, 0)`);
@@ -83,7 +109,7 @@ export function BokehBackground() {
         ctx.filter = `blur(${p.blur}px)`;
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(x, p.y, p.r, 0, Math.PI * 2);
+        ctx.arc(x, y, p.r, 0, Math.PI * 2);
         ctx.fill();
       }
 
