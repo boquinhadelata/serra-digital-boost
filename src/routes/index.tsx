@@ -15,6 +15,14 @@ import {
 } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
+import {
+  Magnetic,
+  Parallax,
+  ScrollProgress,
+  StudioCursor,
+  VelocityMarquee,
+  WordsReveal,
+} from "@/components/motion-kit";
 import mockupWebsite from "@/assets/mockup-website.jpg";
 import mockupCardapio from "@/assets/mockup-cardapio.jpg";
 import mockupAgendamento from "@/assets/mockup-agendamento.jpg";
@@ -183,13 +191,12 @@ function Hero() {
   return (
     <section id="topo" className="relative px-4 pt-40 pb-20 sm:px-8 sm:pt-52 lg:pb-28">
       <div className="mx-auto max-w-[1400px]">
-        <Reveal variant="up">
-          <h1 className="font-display text-[clamp(2.6rem,9vw,8rem)] leading-[0.92] tracking-tight">
-            Criamos experiências
-            <br />
-            digitais <span className="italic">fora do comum</span>
-          </h1>
-        </Reveal>
+        <WordsReveal
+          as="h1"
+          text="Criamos experiências digitais fora do comum"
+          italicFrom={3}
+          className="font-display text-[clamp(2.6rem,9vw,8rem)] leading-[0.92] tracking-tight"
+        />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-end">
           <Reveal variant="up" delay={140}>
@@ -199,26 +206,30 @@ function Hero() {
               (e vender) como grandes marcas.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-4 text-xs font-semibold tracking-[0.14em] text-background uppercase transition-transform duration-300 hover:scale-[1.04]"
-              >
-                Solicitar projeto exclusivo
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-              <a
-                href="#solucoes"
-                className="inline-flex items-center gap-2 rounded-full border border-foreground/25 px-7 py-4 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-300 hover:bg-foreground hover:text-background"
-              >
-                Ver soluções
-              </a>
+              <Magnetic>
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-4 text-xs font-semibold tracking-[0.14em] text-background uppercase transition-colors duration-500 hover:bg-accent hover:text-accent-foreground"
+                >
+                  Solicitar projeto exclusivo
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="#solucoes"
+                  className="inline-flex items-center gap-2 rounded-full border border-foreground/25 px-7 py-4 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-300 hover:bg-foreground hover:text-background"
+                >
+                  Ver soluções
+                </a>
+              </Magnetic>
             </div>
           </Reveal>
 
           <Reveal variant="scale" delay={220}>
-            <div className="relative">
+            <Parallax distance={54} className="relative">
               <div className="animate-soft-float overflow-hidden rounded-[2rem] border border-border bg-card p-3 shadow-[0_40px_90px_-50px_oklch(0.2_0.008_90_/_0.5)]">
                 <img
                   src={mockupWebsite}
@@ -234,10 +245,10 @@ function Hero() {
                   <span>agilizaserranet.com</span>
                 </div>
               </div>
-              <div className="animate-slow-spin absolute -top-8 -left-8 hidden h-24 w-24 place-items-center rounded-full bg-accent text-[9px] font-semibold tracking-[0.2em] uppercase lg:grid">
+              <div className="animate-slow-spin absolute -top-8 -left-8 hidden h-24 w-24 place-items-center rounded-full bg-accent text-[9px] font-semibold tracking-[0.2em] text-accent-foreground uppercase lg:grid">
                 Serra · Gaúcha ·
               </div>
-            </div>
+            </Parallax>
           </Reveal>
         </div>
       </div>
@@ -247,15 +258,11 @@ function Hero() {
 
 function Marquee() {
   return (
-    <div className="marquee-mask border-y border-border py-5">
-      <div className="marquee gap-10 text-xs tracking-[0.3em] text-muted-foreground uppercase">
-        {[...marquee, ...marquee].map((item, i) => (
-          <span key={i} className="inline-flex items-center gap-10">
-            {item}
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          </span>
-        ))}
-      </div>
+    <div className="border-y border-border py-5">
+      <VelocityMarquee
+        items={marquee}
+        className="text-xs tracking-[0.3em] text-muted-foreground uppercase"
+      />
     </div>
   );
 }
@@ -263,9 +270,11 @@ function Marquee() {
 function SectionHead({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <Reveal variant="up" className="flex flex-col gap-5 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
-      <h2 className="font-display text-[clamp(2rem,5vw,4rem)] leading-[1] tracking-tight text-balance">
-        {title}
-      </h2>
+      <WordsReveal
+        as="h2"
+        text={title}
+        className="font-display text-[clamp(2rem,5vw,4rem)] leading-[1] tracking-tight"
+      />
       <p className="text-xs tracking-[0.3em] text-muted-foreground uppercase">{eyebrow}</p>
     </Reveal>
   );
@@ -280,11 +289,13 @@ function Services() {
         <div className="mt-4">
           {services.map((s, i) => (
             <Reveal key={s.title} variant="up" delay={i * 120}>
-              <article className="group grid gap-6 border-b border-border py-10 md:grid-cols-[auto_1.1fr_1fr] md:items-center md:gap-10">
-                <span className="font-display text-3xl text-muted-foreground">{s.n}</span>
+              <article className="row-sweep group grid gap-6 border-b border-border py-10 md:grid-cols-[auto_1.1fr_1fr] md:items-center md:gap-10">
+                <span className="font-display text-3xl text-muted-foreground transition-colors duration-500 group-hover:text-accent">
+                  {s.n}
+                </span>
                 <div>
-                  <h3 className="flex items-center gap-3 font-display text-3xl leading-tight sm:text-4xl">
-                    <s.icon className="h-6 w-6 shrink-0" />
+                  <h3 className="flex items-center gap-3 font-display text-3xl leading-tight transition-transform duration-700 ease-out group-hover:translate-x-2 sm:text-4xl">
+                    <s.icon className="h-6 w-6 shrink-0 transition-transform duration-700 group-hover:rotate-12 group-hover:text-accent" />
                     {s.title}
                   </h3>
                   <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{s.text}</p>
@@ -296,14 +307,14 @@ function Services() {
                     ))}
                   </ul>
                 </div>
-                <div className="overflow-hidden rounded-[1.75rem] border border-border bg-card">
+                <Parallax distance={26} className="overflow-hidden rounded-[1.75rem] border border-border bg-card">
                   <img
                     src={s.image}
                     alt={s.title}
                     loading="lazy"
-                    className="h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                    className="h-56 w-full scale-105 object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.14]"
                   />
-                </div>
+                </Parallax>
               </article>
             </Reveal>
           ))}
@@ -321,8 +332,10 @@ function Differentials() {
         <div className="mt-12 grid gap-px overflow-hidden rounded-[2rem] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {differentials.map((d, i) => (
             <Reveal key={d.k} variant="blur" delay={i * 110}>
-              <div className="h-full bg-card p-8 transition-colors duration-500 hover:bg-accent">
-                <span className="font-display text-2xl text-muted-foreground">0{i + 1}</span>
+              <div className="group h-full bg-card p-8 transition-colors duration-500 hover:bg-accent">
+                <span className="font-display text-2xl text-muted-foreground transition-transform duration-500 group-hover:-translate-y-1 group-hover:text-foreground inline-block">
+                  0{i + 1}
+                </span>
                 <h3 className="mt-6 font-display text-2xl leading-tight">{d.k}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{d.v}</p>
               </div>
@@ -342,11 +355,11 @@ function Process() {
         <div className="mt-4">
           {steps.map((s, i) => (
             <Reveal key={s.title} variant="left" delay={i * 110}>
-              <div className="group flex flex-col gap-3 border-b border-border py-8 md:flex-row md:items-baseline md:gap-12">
+              <div className="row-sweep group flex flex-col gap-3 border-b border-border py-8 md:flex-row md:items-baseline md:gap-12">
                 <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase md:w-24">
                   Passo 0{i + 1}
                 </span>
-                <h3 className="font-display text-2xl transition-transform duration-500 group-hover:translate-x-2 sm:text-3xl md:w-[38%]">
+                <h3 className="font-display text-2xl transition-[transform,color] duration-700 ease-out group-hover:translate-x-3 group-hover:text-accent sm:text-3xl md:w-[38%]">
                   {s.title}
                 </h3>
                 <p className="flex-1 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
@@ -380,22 +393,26 @@ function Contact() {
           <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-accent/30 blur-3xl" />
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-              <h2 className="font-display text-[clamp(2rem,5vw,4rem)] leading-[1] tracking-tight text-balance">
-                Pronto para elevar o nível da sua presença digital?
-              </h2>
+              <WordsReveal
+                as="h2"
+                text="Pronto para elevar o nível da sua presença digital?"
+                className="font-display text-[clamp(2rem,5vw,4rem)] leading-[1] tracking-tight"
+              />
               <p className="mt-6 max-w-md text-sm leading-relaxed text-background/70">
                 Conte o que você precisa. Respondemos rápido, com uma proposta clara e um plano de
                 execução sob medida.
               </p>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-xs font-semibold tracking-[0.14em] text-accent-foreground uppercase transition-transform duration-300 hover:scale-[1.04]"
-              >
-                <MessageCircle className="h-4 w-4" />
-                Falar com especialista
-              </a>
+              <Magnetic className="mt-8">
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-xs font-semibold tracking-[0.14em] text-accent-foreground uppercase transition-colors duration-500 hover:bg-background hover:text-foreground"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Falar com especialista
+                </a>
+              </Magnetic>
             </div>
 
             <form
@@ -518,6 +535,8 @@ function Home() {
   return (
     <div className="relative min-h-screen">
       <div className="canvas-bg" aria-hidden="true" />
+      <ScrollProgress />
+      <StudioCursor />
 
       <Header />
       <main>
