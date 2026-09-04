@@ -43,6 +43,7 @@
   --color-cream: var(--cream);
   --color-mint: var(--mint);
   --color-clay: var(--clay);
+  --color-flare: var(--flare);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }
@@ -62,7 +63,7 @@
   --secondary-foreground: oklch(0.2 0.008 90);
   --muted: oklch(0.925 0.01 90);
   --muted-foreground: oklch(0.47 0.012 90);
-  --accent: oklch(0.9 0.11 165);
+  --accent: oklch(0.74 0.185 48);
   --accent-foreground: oklch(0.2 0.008 90);
   --destructive: oklch(0.58 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
@@ -73,6 +74,7 @@
   --ink: oklch(0.2 0.008 90);
   --cream: oklch(0.958 0.008 90);
   --mint: oklch(0.9 0.11 165);
+  --flare: oklch(0.74 0.185 48);
   --clay: oklch(0.78 0.09 60);
 
   --font-display: "Instrument Serif", "Times New Roman", serif;
@@ -102,7 +104,7 @@
   }
 
   ::selection {
-    background: oklch(0.9 0.11 165 / 0.6);
+    background: oklch(0.74 0.185 48 / 0.45);
   }
 }
 
@@ -159,14 +161,14 @@
 .canvas-bg::before {
   left: -20vmax;
   top: -22vmax;
-  background: radial-gradient(circle, oklch(0.9 0.11 165 / 0.55), transparent 65%);
+  background: radial-gradient(circle, oklch(0.74 0.185 48 / 0.4), transparent 65%);
   animation: drift-a 26s ease-in-out infinite;
 }
 
 .canvas-bg::after {
   right: -22vmax;
   bottom: -18vmax;
-  background: radial-gradient(circle, oklch(0.85 0.07 60 / 0.5), transparent 65%);
+  background: radial-gradient(circle, oklch(0.86 0.09 75 / 0.45), transparent 65%);
   animation: drift-b 32s ease-in-out infinite;
 }
 
@@ -209,7 +211,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: oklch(0.9 0.11 165 / 0.7);
+  background: oklch(0.74 0.185 48 / 0.6);
   animation: halo-pulse 2.4s ease-out infinite;
   z-index: -1;
 }
@@ -250,6 +252,68 @@
 .link-underline:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+/* Cursor de estúdio */
+.studio-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 999px;
+  background: var(--flare);
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: multiply;
+}
+
+/* Máscara de revelação por palavra */
+.mask-line {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+}
+.mask-line:not(:last-child) {
+  margin-right: 0.26em;
+}
+.mask-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Barra de progresso do scroll */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  transform-origin: 0%;
+  background: linear-gradient(90deg, var(--flare), oklch(0.86 0.09 75));
+}
+
+/* Linha que preenche no hover (lista de soluções/processo) */
+.row-sweep {
+  position: relative;
+  isolation: isolate;
+}
+.row-sweep::before {
+  content: "";
+  position: absolute;
+  inset: -1px -1.25rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(90deg, oklch(0.74 0.185 48 / 0.14), transparent 70%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: -1;
+}
+.row-sweep:hover::before {
+  transform: scaleX(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
