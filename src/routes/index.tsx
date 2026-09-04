@@ -189,7 +189,7 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="topo" className="relative px-4 pt-40 pb-20 sm:px-8 sm:pt-52 lg:pb-28">
+    <section id="topo" className="relative px-4 pt-44 pb-20 sm:px-8 sm:pt-64 lg:pb-28">
       <div className="mx-auto max-w-[1400px]">
         <WordsReveal
           as="h1"
