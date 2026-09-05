@@ -3,18 +3,26 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import {
   ArrowUpRight,
+  Building2,
   Calendar,
+  CheckCircle2,
   Globe,
   Instagram,
   Facebook,
   Linkedin,
   Menu,
   MessageCircle,
-  UtensilsCrossed,
+  QrCode,
+  Quote,
+  Scissors,
+  ServerCog,
+  Stethoscope,
+  UserRound,
   X,
 } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
+import { StarfieldBackground } from "@/components/starfield-background";
 import {
   Magnetic,
   Parallax,
@@ -26,24 +34,25 @@ import {
 import mockupWebsite from "@/assets/mockup-website.jpg";
 import mockupCardapio from "@/assets/mockup-cardapio.jpg";
 import mockupAgendamento from "@/assets/mockup-agendamento.jpg";
+import mockupHospedagem from "@/assets/mockup-hospedagem.jpg";
 
 const WHATSAPP =
-  "https://wa.me/5554999496681?text=Ol%C3%A1!%20Quero%20um%20projeto%20digital%20exclusivo%20com%20a%20Agiliza%20Serra.";
+  "https://wa.me/5554999496681?text=Ol%C3%A1!%20Quero%20modernizar%20meu%20neg%C3%B3cio%20com%20a%20Agiliza%20Serra.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Agiliza Serra — Estúdio Digital da Serra Gaúcha" },
+      { title: "Agiliza Serra · Modernize seu negócio na Serra Gaúcha" },
       {
         name: "description",
         content:
-          "Sites de alto padrão, cardápios digitais interativos e agendamento online sob medida para negócios de Gramado, Canela e região.",
+          "Cardápios digitais em QR Code, agendamento online, sites de alto padrão e hospedagem para negócios de Gramado, Canela e região. Entrega em até 48h.",
       },
-      { property: "og:title", content: "Agiliza Serra — Estúdio Digital da Serra Gaúcha" },
+      { property: "og:title", content: "Agiliza Serra · Modernize seu negócio na Serra Gaúcha" },
       {
         property: "og:description",
         content:
-          "Design exclusivo, velocidade ultrarrápida e foco em conversão. Solicite seu projeto exclusivo.",
+          "Cardápio digital, agendamento online e sites profissionais sob medida. Fale no WhatsApp e receba sua proposta hoje.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -53,60 +62,130 @@ export const Route = createFileRoute("/")({
 });
 
 const nav = [
-  { label: "Soluções", href: "#solucoes" },
-  { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Processo", href: "#processo" },
-  { label: "Contato", href: "#contato" },
+  { label: "Serviços", href: "#servicos" },
+  { label: "Para quem é", href: "#para-quem" },
+  { label: "Como funciona", href: "#como-funciona" },
+  { label: "Depoimentos", href: "#depoimentos" },
+];
+
+const steps = [
+  {
+    n: "01",
+    title: "Alinhamento",
+    text: "Conversa rápida no WhatsApp para entender seu negócio, seu público e o que você precisa vender mais.",
+  },
+  {
+    n: "02",
+    title: "Design",
+    text: "Criamos a identidade da sua página com fotos, cores e textos que combinam com a sua marca.",
+  },
+  {
+    n: "03",
+    title: "Desenvolvimento",
+    text: "Montagem, testes em celular e computador e ajustes finos de velocidade e busca no Google.",
+  },
+  {
+    n: "04",
+    title: "Entrega em 48h",
+    text: "Seu projeto no ar em até 48 horas, com treinamento simples e suporte direto pelo WhatsApp.",
+  },
 ];
 
 const services = [
   {
-    n: "01",
-    icon: Globe,
-    title: "Websites de alto padrão",
-    text: "Layouts exclusivos, animações fluídas, carregamento ultrarrápido e arquitetura pensada para conversão.",
-    image: mockupWebsite,
-    points: ["Design sob medida", "Animações fluídas", "SEO técnico"],
-  },
-  {
-    n: "02",
-    icon: UtensilsCrossed,
-    title: "Cardápios digitais interativos",
-    text: "Soluções modernas e ágeis para gastronomia, com navegação intuitiva e um visual verdadeiramente apetitoso.",
+    icon: QrCode,
+    title: "Cardápio Digital QR Code",
+    text: "Seu cardápio na mesa em um QR Code: fotos dos pratos, preços sempre atualizados e nenhuma impressão nova a cada mudança.",
+    price: "A partir de R$ 680",
+    extra: "+ R$ 80/mês",
     image: mockupCardapio,
-    points: ["Acesso por QR Code", "Atualização instantânea", "Fotos em destaque"],
+    points: ["Atualização instantânea", "Fotos que dão fome", "Sem aplicativo para o cliente"],
   },
   {
-    n: "03",
     icon: Calendar,
-    title: "Agendamento online",
-    text: "Automação para clínicas, barbearias, salões e autônomos que querem organização e receita no piloto automático.",
+    title: "Agendamento Online",
+    text: "Sua agenda aberta 24 horas. O cliente marca sozinho, recebe confirmação automática e você reduz faltas.",
+    price: "A partir de R$ 980",
+    extra: "+ R$ 158/mês",
     image: mockupAgendamento,
-    points: ["Confirmações automáticas", "Agenda 24h", "Menos faltas"],
+    points: ["Confirmação automática", "Agenda 24h", "Menos faltas"],
+  },
+  {
+    icon: Globe,
+    title: "Websites de Alto Padrão",
+    text: "Site exclusivo, rápido e feito para converter visitante em cliente, com estrutura pronta para aparecer no Google.",
+    price: "A partir de R$ 790",
+    extra: "Projeto completo",
+    image: mockupWebsite,
+    points: ["Design sob medida", "Carregamento rápido", "Otimizado para Google"],
+  },
+  {
+    icon: ServerCog,
+    title: "Manutenção & Hospedagem",
+    text: "Seu site sempre no ar, seguro, com backup, atualizações e alterações de conteúdo sempre que precisar.",
+    price: "A partir de R$ 180/mês",
+    extra: "Suporte incluso",
+    image: mockupHospedagem,
+    points: ["Backup e segurança", "Alterações inclusas", "Suporte no WhatsApp"],
   },
 ];
 
-const differentials = [
-  { k: "Design exclusivo", v: "Zero templates genéricos. Cada projeto nasce de uma direção visual própria." },
-  { k: "Velocidade ultrarrápida", v: "Performance obsessiva: páginas leves que carregam em instantes." },
-  { k: "Conversão e SEO", v: "Estrutura semântica, copy estratégica e caminhos claros até o contato." },
-  { k: "Pronto para mobile", v: "Experiência impecável em celular, tablet e desktop, sem concessões." },
+const audiences = [
+  {
+    icon: Quote,
+    title: "Restaurantes e cafés",
+    text: "Cardápio digital sempre atualizado, sem custo de reimpressão a cada troca de preço.",
+  },
+  {
+    icon: Stethoscope,
+    title: "Clínicas e consultórios",
+    text: "Agenda organizada, confirmações automáticas e muito menos horários vazios.",
+  },
+  {
+    icon: Scissors,
+    title: "Salões e barbearias",
+    text: "Clientes marcando sozinhos pelo celular, a qualquer hora, sem travar seu atendimento.",
+  },
+  {
+    icon: Building2,
+    title: "Comércios da região",
+    text: "Uma vitrine digital profissional que passa confiança para o turista e para o morador.",
+  },
+  {
+    icon: UserRound,
+    title: "Profissionais autônomos",
+    text: "Presença digital de gente grande, com preço que cabe no orçamento de quem está começando.",
+  },
 ];
 
-const steps = [
-  { title: "Alinhamento & estratégia", text: "Entendemos o negócio, o público e os objetivos comerciais." },
-  { title: "Design & animações", text: "Direção visual exclusiva com protótipo navegável e movimento." },
-  { title: "Desenvolvimento & testes", text: "Código performático, responsivo e validado em todos os dispositivos." },
-  { title: "Entrega & lançamento", text: "Publicação, ajustes finais e acompanhamento pós-lançamento." },
+const testimonials = [
+  {
+    quote:
+      "Trocamos o cardápio de papel pelo QR Code e nunca mais paramos para reimprimir. Os clientes elogiam as fotos toda semana.",
+    name: "Marina Bertoldi",
+    role: "Cantina Bertoldi · Gramado",
+  },
+  {
+    quote:
+      "A agenda online organizou a clínica inteira. As faltas caíram muito e a recepção ficou livre para atender melhor.",
+    name: "Dr. Rafael Cardoso",
+    role: "Clínica Vita · Canela",
+  },
+  {
+    quote:
+      "O site ficou lindo e rápido. Em duas semanas começamos a receber pedidos de orçamento direto pelo WhatsApp.",
+    name: "Tiago Menezes",
+    role: "Menezes Móveis · Nova Petrópolis",
+  },
 ];
 
 const marquee = [
-  "Design exclusivo",
-  "Animações fluídas",
-  "Alta performance",
-  "SEO técnico",
-  "Mobile first",
-  "Foco em conversão",
+  "Cardápio digital",
+  "Agendamento online",
+  "Sites de alto padrão",
+  "Hospedagem e suporte",
+  "Entrega em 48h",
+  "Serra Gaúcha",
 ];
 
 function Header() {
@@ -116,39 +195,48 @@ function Header() {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-x-0 top-0 z-50 px-4 py-4 sm:px-8"
+      className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-md"
     >
-      <div className="mx-auto flex max-w-[1400px] items-start justify-between gap-4">
-        <div className="flex flex-col items-start gap-3">
-          <a href="#topo" className="font-display text-3xl leading-none tracking-tight sm:text-4xl">
-            Agiliza<span className="italic">Serra</span>
-          </a>
-          <nav className="hidden flex-col items-start gap-2 md:flex">
-            {nav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="pill bg-card/70 backdrop-blur transition-colors duration-300 hover:bg-foreground hover:text-background"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        </div>
+      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-4 py-4 sm:px-8">
+        <a href="#topo" className="flex items-center gap-3">
+          <span className="grid h-9 w-9 place-items-center rounded-xl border border-accent/40 font-display text-sm text-accent">
+            AS
+          </span>
+          <span className="flex flex-col leading-tight">
+            <span className="font-display text-sm tracking-[0.22em] text-foreground uppercase">
+              Agiliza Serra
+            </span>
+            <span className="text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+              Estúdio Digital
+            </span>
+          </span>
+        </a>
+
+        <nav className="hidden items-center gap-8 md:flex">
+          {nav.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="link-underline text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
 
         <div className="flex items-center gap-2">
           <a
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-accent px-6 py-3 text-xs font-semibold tracking-[0.14em] text-accent-foreground uppercase transition-transform duration-300 hover:scale-[1.05] sm:inline-flex"
+            className="hidden rounded-full border border-accent/40 px-5 py-2.5 text-xs font-semibold tracking-[0.14em] text-accent uppercase transition-colors duration-300 hover:bg-accent hover:text-accent-foreground sm:inline-flex"
           >
-            Solicitar projeto
+            Falar no WhatsApp
           </a>
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Abrir menu"
-            className="grid h-11 w-11 place-items-center rounded-full border border-border bg-card md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-border md:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -159,9 +247,9 @@ function Header() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mx-auto mt-3 max-w-[1400px] rounded-3xl border border-border bg-card p-5 md:hidden"
+          className="border-t border-border bg-background px-6 pb-6 md:hidden"
         >
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4 pt-4">
             {nav.map((item) => (
               <a
                 key={item.href}
@@ -176,9 +264,9 @@ function Header() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-accent px-5 py-3 text-center text-xs font-semibold tracking-[0.14em] uppercase"
+              className="rounded-full bg-accent px-5 py-3 text-center text-xs font-semibold tracking-[0.14em] text-accent-foreground uppercase"
             >
-              Solicitar projeto
+              Falar no WhatsApp
             </a>
           </div>
         </motion.div>
@@ -189,68 +277,71 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="topo" className="relative px-4 pt-44 pb-20 sm:px-8 sm:pt-64 lg:pb-28">
-      <div className="mx-auto max-w-[1400px]">
+    <section id="topo" className="relative px-4 pt-36 pb-24 text-center sm:px-8 sm:pt-48">
+      <div className="mx-auto max-w-4xl">
+        <Reveal variant="up">
+          <span className="pill">Serra Gaúcha · Gramado · Canela</span>
+        </Reveal>
+
         <WordsReveal
           as="h1"
-          text="Criamos experiências digitais fora do comum"
-          italicFrom={3}
-          className="font-display text-[clamp(2.6rem,9vw,8rem)] leading-[0.92] tracking-tight"
+          text="Modernize seu negócio na Serra Gaúcha e venda mais."
+          className="mt-8 font-display text-[clamp(2.2rem,6.4vw,4.6rem)] leading-[1.08] tracking-[0.01em]"
         />
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-end">
-          <Reveal variant="up" delay={140}>
-            <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Sites profissionais de alto padrão, cardápios digitais interativos e sistemas de
-              agendamento inteligente sob medida — para negócios da Serra Gaúcha que querem parecer
-              (e vender) como grandes marcas.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Magnetic>
-                <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-4 text-xs font-semibold tracking-[0.14em] text-background uppercase transition-colors duration-500 hover:bg-accent hover:text-accent-foreground"
-                >
-                  Solicitar projeto exclusivo
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </a>
-              </Magnetic>
-              <Magnetic>
-                <a
-                  href="#solucoes"
-                  className="inline-flex items-center gap-2 rounded-full border border-foreground/25 px-7 py-4 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-300 hover:bg-foreground hover:text-background"
-                >
-                  Ver soluções
-                </a>
-              </Magnetic>
-            </div>
-          </Reveal>
+        <Reveal variant="up" delay={160}>
+          <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Cardápios digitais em QR Code, agendamento online e sites profissionais de alto padrão —
+            criados sob medida para restaurantes, clínicas e comércios da região, com entrega em até
+            48 horas.
+          </p>
 
-          <Reveal variant="scale" delay={220}>
-            <Parallax distance={54} className="relative">
-              <div className="animate-soft-float overflow-hidden rounded-[2rem] border border-border bg-card p-3 shadow-[0_40px_90px_-50px_oklch(0.2_0.008_90_/_0.5)]">
-                <img
-                  src={mockupWebsite}
-                  alt="Prévia de um website de alto padrão desenvolvido pela Agiliza Serra"
-                  className="w-full rounded-[1.4rem] object-cover"
-                  loading="eager"
-                />
-                <div className="flex items-center justify-between px-3 py-3 text-xs text-muted-foreground">
-                  <span className="inline-flex items-center gap-2">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-                    Projeto ao vivo
-                  </span>
-                  <span>agilizaserranet.com</span>
-                </div>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <Magnetic>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-xs font-semibold tracking-[0.16em] text-accent-foreground uppercase transition-colors duration-500 hover:bg-foreground hover:text-background"
+              >
+                Falar no WhatsApp
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="#servicos"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-4 text-xs font-semibold tracking-[0.16em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
+              >
+                Ver soluções ↓
+              </a>
+            </Magnetic>
+          </div>
+
+          <p className="mt-8 text-xs tracking-[0.14em] text-muted-foreground uppercase">
+            (54) 99949-6681 · Atendimento em toda a Serra Gaúcha · Entrega em até 48h
+          </p>
+        </Reveal>
+
+        <Reveal variant="scale" delay={240}>
+          <Parallax distance={40} className="mt-16">
+            <div className="animate-soft-float paper overflow-hidden rounded-3xl p-3 shadow-[0_60px_120px_-60px_oklch(0.72_0.11_80_/_0.5)]">
+              <img
+                src={mockupWebsite}
+                alt="Exemplo de site de alto padrão criado pela Agiliza Serra"
+                className="w-full rounded-2xl object-cover"
+                loading="eager"
+              />
+              <div className="flex items-center justify-between px-3 py-3 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
+                  Projeto no ar
+                </span>
+                <span>agilizaserranet.com</span>
               </div>
-              <div className="animate-slow-spin absolute -top-8 -left-8 hidden h-24 w-24 place-items-center rounded-full bg-accent text-[9px] font-semibold tracking-[0.2em] text-accent-foreground uppercase lg:grid">
-                Serra · Gaúcha ·
-              </div>
-            </Parallax>
-          </Reveal>
-        </div>
+            </div>
+          </Parallax>
+        </Reveal>
       </div>
     </section>
   );
@@ -258,63 +349,120 @@ function Hero() {
 
 function Marquee() {
   return (
-    <div className="border-y border-border py-5">
+    <div className="border-y border-border/60 py-5">
       <VelocityMarquee
         items={marquee}
-        className="text-xs tracking-[0.3em] text-muted-foreground uppercase"
+        className="eyebrow text-[0.68rem] text-muted-foreground"
       />
     </div>
   );
 }
 
-function SectionHead({ eyebrow, title }: { eyebrow: string; title: string }) {
+function SectionHead({
+  eyebrow,
+  title,
+  text,
+}: {
+  eyebrow: string;
+  title: string;
+  text?: string;
+}) {
   return (
-    <Reveal variant="up" className="flex flex-col gap-5 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
+    <Reveal variant="up" className="mx-auto max-w-2xl text-center">
+      <p className="eyebrow">{eyebrow}</p>
       <WordsReveal
         as="h2"
         text={title}
-        className="font-display text-[clamp(2rem,5vw,4rem)] leading-[1] tracking-tight"
+        className="mt-5 font-display text-[clamp(1.7rem,3.6vw,2.9rem)] leading-[1.15]"
       />
-      <p className="text-xs tracking-[0.3em] text-muted-foreground uppercase">{eyebrow}</p>
+      {text && <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">{text}</p>}
     </Reveal>
+  );
+}
+
+function HowItWorks() {
+  return (
+    <section id="como-funciona" className="px-4 py-24 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-[1280px]">
+        <SectionHead
+          eyebrow="Como funciona"
+          title="Do primeiro contato ao projeto no ar em 48 horas"
+          text="Você conversa uma vez com a gente e cuidamos do resto: criação, testes, publicação e treinamento."
+        />
+        <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((s, i) => (
+            <Reveal key={s.n} variant="up" delay={i * 110}>
+              <div className="group h-full bg-background p-8 transition-colors duration-500 hover:bg-card">
+                <span className="font-display text-3xl text-accent">{s.n}</span>
+                <h3 className="mt-6 font-display text-lg tracking-[0.08em] uppercase">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
 function Services() {
   return (
-    <section id="solucoes" className="px-4 py-24 sm:px-8 sm:py-32">
-      <div className="mx-auto max-w-[1400px]">
-        <SectionHead eyebrow="O que entregamos" title="Três soluções, um só padrão de acabamento" />
+    <section id="servicos" className="px-4 py-24 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-[1280px]">
+        <SectionHead
+          eyebrow="O que fazemos"
+          title="Tudo o que seu negócio precisa para vender online"
+          text="Soluções prontas para usar, com preço transparente e suporte direto pelo WhatsApp."
+        />
 
-        <div className="mt-4">
+        <div className="mt-16 space-y-8">
           {services.map((s, i) => (
-            <Reveal key={s.title} variant="up" delay={i * 120}>
-              <article className="row-sweep group grid gap-6 border-b border-border py-10 md:grid-cols-[auto_1.1fr_1fr] md:items-center md:gap-10">
-                <span className="font-display text-3xl text-muted-foreground transition-colors duration-500 group-hover:text-accent">
-                  {s.n}
-                </span>
+            <Reveal key={s.title} variant="up" delay={i * 90}>
+              <article
+                className={`paper gold-glow grid gap-8 overflow-hidden rounded-3xl p-6 md:grid-cols-2 md:items-center md:p-8 ${
+                  i % 2 === 1 ? "md:[&>figure]:order-first" : ""
+                }`}
+              >
                 <div>
-                  <h3 className="flex items-center gap-3 font-display text-3xl leading-tight transition-transform duration-700 ease-out group-hover:translate-x-2 sm:text-4xl">
-                    <s.icon className="h-6 w-6 shrink-0 transition-transform duration-700 group-hover:rotate-12 group-hover:text-accent" />
-                    {s.title}
-                  </h3>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-                  <ul className="mt-5 flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-3 text-accent">
+                    <s.icon className="h-6 w-6" />
+                    <span className="eyebrow">0{i + 1}</span>
+                  </span>
+                  <h3 className="mt-5 font-display text-2xl leading-tight sm:text-3xl">{s.title}</h3>
+                  <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+                    {s.text}
+                  </p>
+                  <ul className="mt-6 space-y-2">
                     {s.points.map((p) => (
-                      <li key={p} className="rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground">
+                      <li key={p} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-accent" />
                         {p}
                       </li>
                     ))}
                   </ul>
+                  <div className="mt-7 flex flex-wrap items-center gap-4">
+                    <span className="font-display text-xl text-accent">{s.price}</span>
+                    <span className="text-xs tracking-[0.14em] text-muted-foreground uppercase">
+                      {s.extra}
+                    </span>
+                  </div>
+                  <a
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.16em] text-accent uppercase link-underline"
+                  >
+                    Quero este <ArrowUpRight className="h-4 w-4" />
+                  </a>
                 </div>
-                <Parallax distance={26} className="overflow-hidden rounded-[1.75rem] border border-border bg-card">
+                <figure className="overflow-hidden rounded-2xl border border-border">
                   <img
                     src={s.image}
                     alt={s.title}
                     loading="lazy"
-                    className="h-56 w-full scale-105 object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.14]"
+                    className="h-64 w-full object-cover transition-transform duration-[900ms] ease-out hover:scale-105 md:h-80"
                   />
-                </Parallax>
+                </figure>
               </article>
             </Reveal>
           ))}
@@ -324,20 +472,22 @@ function Services() {
   );
 }
 
-function Differentials() {
+function Audiences() {
   return (
-    <section id="diferenciais" className="px-4 py-24 sm:px-8 sm:py-32">
-      <div className="mx-auto max-w-[1400px]">
-        <SectionHead eyebrow="Por que a Agiliza Serra" title="Padrão de estúdio, resultado de negócio" />
-        <div className="mt-12 grid gap-px overflow-hidden rounded-[2rem] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {differentials.map((d, i) => (
-            <Reveal key={d.k} variant="blur" delay={i * 110}>
-              <div className="group h-full bg-card p-8 transition-colors duration-500 hover:bg-accent">
-                <span className="font-display text-2xl text-muted-foreground transition-transform duration-500 group-hover:-translate-y-1 group-hover:text-foreground inline-block">
-                  0{i + 1}
-                </span>
-                <h3 className="mt-6 font-display text-2xl leading-tight">{d.k}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{d.v}</p>
+    <section id="para-quem" className="px-4 py-24 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-[1280px]">
+        <SectionHead
+          eyebrow="Para quem é"
+          title="Um estúdio, cinco jeitos de usar"
+          text="Atendemos quem vive do dia a dia da Serra: gastronomia, saúde, beleza, comércio e serviços."
+        />
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {audiences.map((a, i) => (
+            <Reveal key={a.title} variant="blur" delay={i * 90}>
+              <div className="paper gold-glow h-full rounded-3xl p-8">
+                <a.icon className="h-6 w-6 text-accent" />
+                <h3 className="mt-6 font-display text-lg tracking-[0.06em] uppercase">{a.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.text}</p>
               </div>
             </Reveal>
           ))}
@@ -347,23 +497,24 @@ function Differentials() {
   );
 }
 
-function Process() {
+function Testimonials() {
   return (
-    <section id="processo" className="px-4 py-24 sm:px-8 sm:py-32">
-      <div className="mx-auto max-w-[1400px]">
-        <SectionHead eyebrow="Processo" title="Do primeiro alinhamento ao lançamento" />
-        <div className="mt-4">
-          {steps.map((s, i) => (
-            <Reveal key={s.title} variant="left" delay={i * 110}>
-              <div className="row-sweep group flex flex-col gap-3 border-b border-border py-8 md:flex-row md:items-baseline md:gap-12">
-                <span className="text-xs tracking-[0.3em] text-muted-foreground uppercase md:w-24">
-                  Passo 0{i + 1}
-                </span>
-                <h3 className="font-display text-2xl transition-[transform,color] duration-700 ease-out group-hover:translate-x-3 group-hover:text-accent sm:text-3xl md:w-[38%]">
-                  {s.title}
-                </h3>
-                <p className="flex-1 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-              </div>
+    <section id="depoimentos" className="px-4 py-24 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-[1280px]">
+        <SectionHead eyebrow="Depoimentos" title="Quem já modernizou o próprio negócio" />
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          {testimonials.map((t, i) => (
+            <Reveal key={t.name} variant="up" delay={i * 110}>
+              <figure className="paper gold-glow flex h-full flex-col justify-between rounded-3xl p-8">
+                <Quote className="h-6 w-6 text-accent" />
+                <blockquote className="mt-6 text-sm leading-relaxed text-foreground/90">
+                  “{t.quote}”
+                </blockquote>
+                <figcaption className="mt-8 border-t border-border pt-5">
+                  <p className="font-display text-sm tracking-[0.1em] uppercase">{t.name}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{t.role}</p>
+                </figcaption>
+              </figure>
             </Reveal>
           ))}
         </div>
@@ -376,7 +527,7 @@ function Contact() {
   const [form, setForm] = useState({
     nome: "",
     empresa: "",
-    solucao: "Website de alto padrão",
+    solucao: "Cardápio Digital QR Code",
     whatsapp: "",
   });
 
@@ -384,33 +535,34 @@ function Contact() {
   const link = `https://wa.me/5554999496681?text=${encodeURIComponent(message)}`;
 
   const field =
-    "w-full rounded-full border border-background/25 bg-transparent px-5 py-3.5 text-sm text-background placeholder:text-background/45 focus:border-accent focus:outline-none transition-colors";
+    "w-full rounded-full border border-border bg-background/60 px-5 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none transition-colors";
 
   return (
-    <section id="contato" className="px-4 py-16 sm:px-8 sm:py-24">
-      <Reveal variant="scale" className="mx-auto max-w-[1400px]">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-foreground p-8 text-background sm:p-14">
-          <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-accent/30 blur-3xl" />
+    <section id="contato" className="px-4 py-20 sm:px-8 sm:py-28">
+      <Reveal variant="scale" className="mx-auto max-w-[1100px]">
+        <div className="paper relative overflow-hidden rounded-[2rem] p-8 sm:p-14">
+          <div className="pointer-events-none absolute -top-28 -right-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
+              <p className="eyebrow">Contato</p>
               <WordsReveal
                 as="h2"
-                text="Pronto para elevar o nível da sua presença digital?"
-                className="font-display text-[clamp(2rem,5vw,4rem)] leading-[1] tracking-tight"
+                text="Peça seu orçamento sem compromisso"
+                className="mt-5 font-display text-[clamp(1.7rem,3.6vw,2.8rem)] leading-[1.15]"
               />
-              <p className="mt-6 max-w-md text-sm leading-relaxed text-background/70">
-                Conte o que você precisa. Respondemos rápido, com uma proposta clara e um plano de
-                execução sob medida.
+              <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+                Conte o que você precisa. Respondemos rápido, com uma proposta clara e um prazo real
+                de entrega.
               </p>
               <Magnetic className="mt-8">
                 <a
                   href={WHATSAPP}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-xs font-semibold tracking-[0.14em] text-accent-foreground uppercase transition-colors duration-500 hover:bg-background hover:text-foreground"
+                  className="inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-xs font-semibold tracking-[0.16em] text-accent-foreground uppercase transition-colors duration-500 hover:bg-foreground hover:text-background"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  Falar com especialista
+                  (54) 99949-6681
                 </a>
               </Magnetic>
             </div>
@@ -443,10 +595,11 @@ function Contact() {
                 value={form.solucao}
                 onChange={(e) => setForm({ ...form, solucao: e.target.value })}
               >
-                <option className="text-foreground">Website de alto padrão</option>
-                <option className="text-foreground">Cardápio digital interativo</option>
-                <option className="text-foreground">Sistema de agendamento online</option>
-                <option className="text-foreground">Outro projeto</option>
+                <option className="bg-background">Cardápio Digital QR Code</option>
+                <option className="bg-background">Agendamento Online</option>
+                <option className="bg-background">Website de alto padrão</option>
+                <option className="bg-background">Manutenção & Hospedagem</option>
+                <option className="bg-background">Outro projeto</option>
               </select>
               <input
                 aria-label="WhatsApp"
@@ -458,7 +611,7 @@ function Contact() {
               />
               <button
                 type="submit"
-                className="w-full rounded-full bg-background px-7 py-4 text-xs font-semibold tracking-[0.14em] text-foreground uppercase transition-transform duration-300 hover:scale-[1.02]"
+                className="w-full rounded-full bg-accent px-7 py-4 text-xs font-semibold tracking-[0.16em] text-accent-foreground uppercase transition-transform duration-300 hover:scale-[1.02]"
               >
                 Enviar e continuar no WhatsApp
               </button>
@@ -472,24 +625,22 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="px-4 pt-16 pb-12 sm:px-8">
-      <div className="mx-auto max-w-[1400px]">
+    <footer className="px-4 pt-12 pb-12 sm:px-8">
+      <div className="mx-auto max-w-[1280px]">
         <div className="grid gap-10 border-t border-border pt-12 sm:grid-cols-3">
           <div>
-            <span className="font-display text-3xl">
-              Agiliza<span className="italic">Serra</span>
-            </span>
+            <span className="font-display text-lg tracking-[0.22em] uppercase">Agiliza Serra</span>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              Estúdio digital da Serra Gaúcha: soluções de alta performance e apelo visual
-              exclusivo.
+              Estúdio digital da Serra Gaúcha: cardápios digitais, agendamento online e sites de
+              alto padrão para quem quer vender mais.
             </p>
           </div>
           <div>
-            <p className="text-xs tracking-[0.3em] text-muted-foreground uppercase">Navegação</p>
+            <p className="eyebrow">Navegação</p>
             <ul className="mt-5 space-y-3 text-sm">
               {nav.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className="link-underline">
+                  <a href={item.href} className="link-underline text-muted-foreground hover:text-foreground">
                     {item.label}
                   </a>
                 </li>
@@ -497,14 +648,14 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-xs tracking-[0.3em] text-muted-foreground uppercase">Contato</p>
+            <p className="eyebrow">Contato</p>
             <a
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 text-sm link-underline"
+              className="link-underline mt-5 inline-flex items-center gap-2 text-sm"
             >
-              <MessageCircle className="h-4 w-4" />
+              <MessageCircle className="h-4 w-4 text-accent" />
               (54) 99949-6681
             </a>
             <div className="mt-6 flex gap-3">
@@ -515,7 +666,7 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Rede social da Agiliza Serra"
-                  className="grid h-11 w-11 place-items-center rounded-full border border-border transition-colors duration-300 hover:bg-foreground hover:text-background"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-border transition-colors duration-300 hover:border-accent hover:text-accent"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -535,6 +686,7 @@ function Home() {
   return (
     <div className="relative min-h-screen">
       <div className="canvas-bg" aria-hidden="true" />
+      <StarfieldBackground />
       <ScrollProgress />
       <StudioCursor />
 
@@ -542,9 +694,10 @@ function Home() {
       <main>
         <Hero />
         <Marquee />
+        <HowItWorks />
         <Services />
-        <Differentials />
-        <Process />
+        <Audiences />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />
@@ -554,7 +707,7 @@ function Home() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp"
-        className="animate-halo fixed right-5 bottom-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-accent text-accent-foreground shadow-[0_18px_40px_-18px_oklch(0.2_0.008_90_/_0.6)] transition-transform duration-300 hover:scale-110"
+        className="animate-halo fixed right-5 bottom-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-accent text-accent-foreground shadow-[0_18px_40px_-18px_oklch(0.72_0.11_80_/_0.8)] transition-transform duration-300 hover:scale-110"
       >
         <MessageCircle className="h-6 w-6" />
       </a>
