@@ -22,7 +22,9 @@ import {
 } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
+import { HeroPhone } from "@/components/hero-phone";
 import { StarfieldBackground } from "@/components/starfield-background";
+
 import {
   Magnetic,
   Parallax,
@@ -277,75 +279,68 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="topo" className="relative px-4 pt-36 pb-24 text-center sm:px-8 sm:pt-48">
-      <div className="mx-auto max-w-4xl">
-        <Reveal variant="up">
-          <span className="pill">Serra Gaúcha · Gramado · Canela</span>
-        </Reveal>
+    <section
+      id="topo"
+      className="relative overflow-hidden px-4 pt-32 pb-24 sm:px-8 sm:pt-40 lg:pt-44"
+    >
+      <div className="hero-scrim" aria-hidden="true" />
+      <div className="relative z-10 mx-auto grid max-w-[1280px] items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="text-center lg:text-left">
+          <Reveal variant="up">
+            <span className="pill">Serra Gaúcha · Gramado · Canela</span>
+          </Reveal>
 
-        <WordsReveal
-          as="h1"
-          text="Modernize seu negócio na Serra Gaúcha e venda mais."
-          className="mt-8 font-display text-[clamp(2.2rem,6.4vw,4.6rem)] leading-[1.08] tracking-[0.01em]"
-        />
+          <WordsReveal
+            as="h1"
+            text="Modernize seu negócio na Serra Gaúcha e venda mais."
+            className="mt-8 font-display text-[clamp(2.2rem,5.4vw,4.2rem)] leading-[1.08] tracking-[0.01em]"
+          />
 
-        <Reveal variant="up" delay={160}>
-          <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Cardápios digitais em QR Code, agendamento online e sites profissionais de alto padrão —
-            criados sob medida para restaurantes, clínicas e comércios da região, com entrega em até
-            48 horas.
-          </p>
+          <Reveal variant="up" delay={160}>
+            <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0">
+              Cardápios digitais em QR Code, agendamento online e sites profissionais de alto padrão
+              — criados sob medida para restaurantes, clínicas e comércios da região, com entrega em
+              até 48 horas.
+            </p>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Magnetic>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-xs font-semibold tracking-[0.16em] text-accent-foreground uppercase transition-colors duration-500 hover:bg-foreground hover:text-background"
-              >
-                Falar no WhatsApp
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a
-                href="#servicos"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-4 text-xs font-semibold tracking-[0.16em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
-              >
-                Ver soluções ↓
-              </a>
-            </Magnetic>
-          </div>
-
-          <p className="mt-8 text-xs tracking-[0.14em] text-muted-foreground uppercase">
-            (54) 99949-6681 · Atendimento em toda a Serra Gaúcha · Entrega em até 48h
-          </p>
-        </Reveal>
-
-        <Reveal variant="scale" delay={240}>
-          <Parallax distance={40} className="mt-16">
-            <div className="animate-soft-float paper overflow-hidden rounded-3xl p-3 shadow-[0_60px_120px_-60px_oklch(0.72_0.11_80_/_0.5)]">
-              <img
-                src={mockupWebsite}
-                alt="Exemplo de site de alto padrão criado pela Agiliza Serra"
-                className="w-full rounded-2xl object-cover"
-                loading="eager"
-              />
-              <div className="flex items-center justify-between px-3 py-3 text-xs text-muted-foreground">
-                <span className="inline-flex items-center gap-2">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-                  Projeto no ar
-                </span>
-                <span>agilizaserranet.com</span>
-              </div>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <Magnetic>
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-xs font-semibold tracking-[0.16em] text-accent-foreground uppercase transition-colors duration-500 hover:bg-foreground hover:text-background"
+                >
+                  Falar no WhatsApp
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="#servicos"
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-4 text-xs font-semibold tracking-[0.16em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
+                >
+                  Ver soluções ↓
+                </a>
+              </Magnetic>
             </div>
+
+            <p className="mt-8 text-xs tracking-[0.14em] text-muted-foreground uppercase">
+              (54) 99949-6681 · Atendimento em toda a Serra Gaúcha · Entrega em até 48h
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal variant="scale" delay={200} className="flex justify-center lg:justify-end">
+          <Parallax distance={30}>
+            <HeroPhone />
           </Parallax>
         </Reveal>
       </div>
     </section>
   );
 }
+
 
 function Marquee() {
   return (
