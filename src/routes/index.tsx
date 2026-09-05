@@ -22,7 +22,9 @@ import {
 } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
+import { HeroPhone } from "@/components/hero-phone";
 import { StarfieldBackground } from "@/components/starfield-background";
+
 import {
   Magnetic,
   Parallax,
