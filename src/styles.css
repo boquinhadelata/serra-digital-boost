@@ -314,11 +314,99 @@
   transform: scaleX(1);
 }
 
+/* Véu para manter o texto legível sobre a constelação */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    oklch(0.14 0.018 265 / 0.88) 0%,
+    oklch(0.14 0.018 265 / 0.6) 36%,
+    transparent 68%
+  );
+}
+
+/* Celular da abertura */
+.hero-phone {
+  position: relative;
+  width: 260px;
+  height: 540px;
+  padding: 12px;
+  border-radius: 42px;
+  background: oklch(0.18 0.014 265);
+  transform: rotate(3.5deg);
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow:
+    0 50px 90px -30px oklch(0.05 0.01 265 / 0.8),
+    0 0 0 1px oklch(0.92 0.02 80 / 0.08),
+    0 0 70px oklch(0.72 0.11 80 / 0.22);
+}
+.hero-phone:hover {
+  transform: rotate(0deg) translateY(-6px);
+}
+.hero-phone::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84px;
+  height: 6px;
+  border-radius: 999px;
+  background: oklch(0.92 0.02 80 / 0.18);
+  z-index: 3;
+}
+.hero-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 32px;
+  overflow: hidden;
+  background: oklch(0.12 0.012 265);
+}
+.hero-phone-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.7s ease;
+}
+@keyframes hero-scan {
+  0% { transform: translateY(-20%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(520%); opacity: 0; }
+}
+.hero-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 18%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    oklch(0.72 0.11 80 / 0.28),
+    transparent
+  );
+  animation: hero-scan 3.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee,
   .animate-soft-float,
   .animate-slow-spin,
-  .animate-halo::after {
+  .animate-halo::after,
+  .hero-scanline {
     animation: none !important;
   }
+  .hero-scanline {
+    opacity: 0;
+  }
 }
+
