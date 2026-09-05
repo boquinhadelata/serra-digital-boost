@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system Agiliza Serra — editorial claro, creme + tinta + menta.
+ * Design system Agiliza Serra — noturno, grafite quase preto + dourado.
  */
 
 @theme inline {
@@ -39,46 +39,44 @@
   --color-ring-offset-background: var(--background);
 
   /* Tokens proprietários */
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
   --color-ink: var(--ink);
-  --color-cream: var(--cream);
-  --color-mint: var(--mint);
-  --color-clay: var(--clay);
-  --color-flare: var(--flare);
+  --color-parchment: var(--parchment);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }
 
 :root {
-  --radius: 1.5rem;
+  --radius: 1rem;
 
-  --background: oklch(0.958 0.008 90);
-  --foreground: oklch(0.2 0.008 90);
-  --card: oklch(0.985 0.006 90);
-  --card-foreground: oklch(0.2 0.008 90);
-  --popover: oklch(0.985 0.006 90);
-  --popover-foreground: oklch(0.2 0.008 90);
-  --primary: oklch(0.2 0.008 90);
-  --primary-foreground: oklch(0.97 0.008 90);
-  --secondary: oklch(0.925 0.01 90);
-  --secondary-foreground: oklch(0.2 0.008 90);
-  --muted: oklch(0.925 0.01 90);
-  --muted-foreground: oklch(0.47 0.012 90);
-  --accent: oklch(0.74 0.185 48);
-  --accent-foreground: oklch(0.2 0.008 90);
+  --background: oklch(0.14 0.018 265);
+  --foreground: oklch(0.92 0.02 80);
+  --card: oklch(0.19 0.018 265);
+  --card-foreground: oklch(0.92 0.02 80);
+  --popover: oklch(0.19 0.018 265);
+  --popover-foreground: oklch(0.92 0.02 80);
+  --primary: oklch(0.72 0.11 80);
+  --primary-foreground: oklch(0.14 0.018 265);
+  --secondary: oklch(0.24 0.018 265);
+  --secondary-foreground: oklch(0.92 0.02 80);
+  --muted: oklch(0.24 0.018 265);
+  --muted-foreground: oklch(0.72 0.014 265);
+  --accent: oklch(0.72 0.11 80);
+  --accent-foreground: oklch(0.14 0.018 265);
   --destructive: oklch(0.58 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.86 0.012 90);
-  --input: oklch(0.86 0.012 90);
-  --ring: oklch(0.2 0.008 90);
+  --border: oklch(0.32 0.016 265);
+  --input: oklch(0.32 0.016 265);
+  --ring: oklch(0.72 0.11 80);
 
-  --ink: oklch(0.2 0.008 90);
-  --cream: oklch(0.958 0.008 90);
-  --mint: oklch(0.9 0.11 165);
-  --flare: oklch(0.74 0.185 48);
-  --clay: oklch(0.78 0.09 60);
+  --gold: oklch(0.72 0.11 80);
+  --gold-dark: oklch(0.62 0.11 72);
+  --ink: oklch(0.14 0.018 265);
+  --parchment: oklch(0.92 0.02 80);
 
-  --font-display: "Instrument Serif", "Times New Roman", serif;
-  --font-body: "Space Grotesk", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Cinzel", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
@@ -99,12 +97,12 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
   }
 
   ::selection {
-    background: oklch(0.74 0.185 48 / 0.45);
+    background: oklch(0.72 0.11 80 / 0.35);
   }
 }
 
@@ -112,73 +110,73 @@
   text-wrap: balance;
 }
 
-/* Cartão editorial */
+/* Cartão em vidro fosco com borda dourada discreta */
 @utility paper {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: linear-gradient(
+    160deg,
+    oklch(0.24 0.02 265 / 0.75),
+    oklch(0.17 0.018 265 / 0.75)
+  );
+  border: 1px solid oklch(0.72 0.11 80 / 0.18);
+  backdrop-filter: blur(10px);
+}
+
+@utility gold-glow {
+  transition: border-color 0.4s ease, box-shadow 0.5s ease, transform 0.5s ease;
+  &:hover {
+    border-color: oklch(0.72 0.11 80 / 0.55);
+    box-shadow: 0 24px 60px -30px oklch(0.72 0.11 80 / 0.75);
+    transform: translateY(-4px);
+  }
 }
 
 @utility pill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid var(--border);
+  border: 1px solid oklch(0.72 0.11 80 / 0.28);
   border-radius: 999px;
   padding: 0.5rem 1rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--gold);
+}
+
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
 @utility grid-lines {
   background-image:
-    linear-gradient(oklch(0.2 0.008 90 / 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.2 0.008 90 / 0.045) 1px, transparent 1px);
+    linear-gradient(oklch(0.92 0.02 80 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.92 0.02 80 / 0.04) 1px, transparent 1px);
   background-size: 72px 72px;
 }
 
-/* Fundo claro com manchas suaves */
+/* Fundo noturno base (o céu de estrelas é desenhado em canvas por cima) */
 .canvas-bg {
   position: fixed;
   inset: 0;
-  z-index: -1;
-  overflow: hidden;
+  z-index: -2;
   pointer-events: none;
-  background: var(--cream);
+  background:
+    radial-gradient(120% 80% at 50% -10%, oklch(0.26 0.05 265 / 0.9), transparent 60%),
+    radial-gradient(90% 60% at 80% 110%, oklch(0.3 0.06 80 / 0.28), transparent 65%),
+    var(--ink);
 }
 
-.canvas-bg::before,
-.canvas-bg::after {
-  content: "";
-  position: absolute;
-  width: 60vmax;
-  height: 60vmax;
-  border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.55;
-}
-
-.canvas-bg::before {
-  left: -20vmax;
-  top: -22vmax;
-  background: radial-gradient(circle, oklch(0.74 0.185 48 / 0.4), transparent 65%);
-  animation: drift-a 26s ease-in-out infinite;
-}
-
-.canvas-bg::after {
-  right: -22vmax;
-  bottom: -18vmax;
-  background: radial-gradient(circle, oklch(0.86 0.09 75 / 0.45), transparent 65%);
-  animation: drift-b 32s ease-in-out infinite;
-}
-
-@keyframes drift-a {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(12%, 10%) scale(1.15); }
-}
-@keyframes drift-b {
-  0%, 100% { transform: translate(0, 0) scale(1.1); }
-  50% { transform: translate(-12%, -10%) scale(0.95); }
+.starfield-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 /* Rotação lenta do selo do hero */
@@ -211,7 +209,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: oklch(0.74 0.185 48 / 0.6);
+  background: oklch(0.72 0.11 80 / 0.6);
   animation: halo-pulse 2.4s ease-out infinite;
   z-index: -1;
 }
@@ -244,7 +242,7 @@
   bottom: -2px;
   height: 1px;
   width: 100%;
-  background: currentColor;
+  background: var(--gold);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.35s ease;
@@ -259,14 +257,14 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 18px;
-  height: 18px;
-  margin: -9px 0 0 -9px;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
   border-radius: 999px;
-  background: var(--flare);
+  background: var(--gold);
   pointer-events: none;
   z-index: 100;
-  mix-blend-mode: multiply;
+  mix-blend-mode: screen;
 }
 
 /* Máscara de revelação por palavra */
@@ -274,7 +272,7 @@
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  padding-bottom: 0.08em;
+  padding-bottom: 0.1em;
 }
 .mask-line:not(:last-child) {
   margin-right: 0.26em;
@@ -290,13 +288,13 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 2px;
   z-index: 60;
   transform-origin: 0%;
-  background: linear-gradient(90deg, var(--flare), oklch(0.86 0.09 75));
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold));
 }
 
-/* Linha que preenche no hover (lista de soluções/processo) */
+/* Linha que preenche no hover */
 .row-sweep {
   position: relative;
   isolation: isolate;
@@ -305,8 +303,8 @@
   content: "";
   position: absolute;
   inset: -1px -1.25rem;
-  border-radius: 1.5rem;
-  background: linear-gradient(90deg, oklch(0.74 0.185 48 / 0.14), transparent 70%);
+  border-radius: 1.25rem;
+  background: linear-gradient(90deg, oklch(0.72 0.11 80 / 0.12), transparent 70%);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
@@ -320,9 +318,7 @@
   .marquee,
   .animate-soft-float,
   .animate-slow-spin,
-  .animate-halo::after,
-  .canvas-bg::before,
-  .canvas-bg::after {
+  .animate-halo::after {
     animation: none !important;
   }
 }
