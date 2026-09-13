@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
+import { Portfolio } from "@/components/portfolio";
 import { HeroPhone } from "@/components/hero-phone";
 import { StarfieldBackground } from "@/components/starfield-background";
 
@@ -65,6 +66,7 @@ export const Route = createFileRoute("/")({
 
 const nav = [
   { label: "Serviços", href: "#servicos" },
+  { label: "Portfólio", href: "#portfolio" },
   { label: "Para quem é", href: "#para-quem" },
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Depoimentos", href: "#depoimentos" },
@@ -691,6 +693,7 @@ function Home() {
         <Marquee />
         <HowItWorks />
         <Services />
+        <Portfolio />
         <Audiences />
         <Testimonials />
         <Contact />
