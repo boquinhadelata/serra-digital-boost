@@ -11,7 +11,7 @@ import projMadrugaMob from "@/assets/proj-madruga-mob.jpg";
  * sabe que foi o trabalho publicado que converteu, e não o topo do site.
  */
 const WHATSAPP_PORTFOLIO =
-  "https://wa.me/5554999496681?text=" +
+  "https://wa.me/5554997104475?text=" +
   encodeURIComponent(
     "Olá! Vi o site que vocês fizeram para o Madruga Delivery e quero um assim para o meu negócio.",
   );

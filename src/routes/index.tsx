@@ -40,7 +40,7 @@ import mockupAgendamento from "@/assets/mockup-agendamento.jpg";
 import mockupHospedagem from "@/assets/mockup-hospedagem.jpg";
 
 const WHATSAPP =
-  "https://wa.me/5554999496681?text=Ol%C3%A1!%20Quero%20modernizar%20meu%20neg%C3%B3cio%20com%20a%20Agiliza%20Serra.";
+  "https://wa.me/5554997104475?text=Ol%C3%A1!%20Quero%20modernizar%20meu%20neg%C3%B3cio%20com%20a%20Agiliza%20Serra.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -328,7 +328,7 @@ function Hero() {
             </div>
 
             <p className="mt-8 text-xs tracking-[0.14em] text-muted-foreground uppercase">
-              (54) 99949-6681 · Atendimento em toda a Serra Gaúcha · Entrega em até 48h
+              (54) 99710-4475 · Atendimento em toda a Serra Gaúcha · Entrega em até 48h
             </p>
           </Reveal>
         </div>
@@ -529,7 +529,7 @@ function Contact() {
   });
 
   const message = `Olá! Sou ${form.nome || "..."}${form.empresa ? ` da ${form.empresa}` : ""}. Tenho interesse em: ${form.solucao}. Meu WhatsApp: ${form.whatsapp || "..."}`;
-  const link = `https://wa.me/5554999496681?text=${encodeURIComponent(message)}`;
+  const link = `https://wa.me/5554997104475?text=${encodeURIComponent(message)}`;
 
   const field =
     "w-full rounded-full border border-border bg-background/60 px-5 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none transition-colors";
@@ -559,7 +559,7 @@ function Contact() {
                   className="inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 text-xs font-semibold tracking-[0.16em] text-accent-foreground uppercase transition-colors duration-500 hover:bg-foreground hover:text-background"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  (54) 99949-6681
+                  (54) 99710-4475
                 </a>
               </Magnetic>
             </div>
@@ -653,7 +653,7 @@ function Footer() {
               className="link-underline mt-5 inline-flex items-center gap-2 text-sm"
             >
               <MessageCircle className="h-4 w-4 text-accent" />
-              (54) 99949-6681
+              (54) 99710-4475
             </a>
             <div className="mt-6 flex gap-3">
               {[Instagram, Facebook, Linkedin].map((Icon, i) => (
