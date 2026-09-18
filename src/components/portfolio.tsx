@@ -5,6 +5,8 @@ import { WordsReveal } from "@/components/motion-kit";
 
 import projMadruga from "@/assets/proj-madruga.jpg";
 import projMadrugaMob from "@/assets/proj-madruga-mob.jpg";
+import projOrvalho from "@/assets/proj-orvalho.jpg";
+import projOrvalhoMob from "@/assets/proj-orvalho-mob.jpg";
 
 /**
  * Mensagem própria do portfólio: quando o lead chega com este texto, a gente
@@ -65,6 +67,39 @@ const projetos: Projeto[] = [
     dominio: "madrugadelivery.netlify.app",
     shot: projMadruga,
     shotMob: projMadrugaMob,
+  },
+  {
+    cliente: "Orvalho",
+    ramo: "Clínica de estética da pele",
+    cidade: "Gramado, RS",
+    tipo: "Projeto conceito",
+    ano: "2026",
+    resumo:
+      "A clínica não tinha presença digital alguma. Toda avaliação, dúvida de tratamento e agendamento dependia de mensagem avulsa no WhatsApp, sem nenhum lugar para a cliente conhecer os tratamentos antes de perguntar.",
+    trocas: [
+      { antes: "Nenhum site, só um número de WhatsApp", depois: "Site próprio com domínio e identidade visual" },
+      {
+        antes: "Cliente pergunta tratamento por tratamento na conversa",
+        depois: "Lista de tratamentos com duração e sessões, sempre visível",
+      },
+      {
+        antes: "Agendar significa escrever a mensagem do zero toda vez",
+        depois: "Formulário monta a mensagem pronta pro WhatsApp sozinho",
+      },
+      {
+        antes: "Sem nada que transmita a experiência da clínica",
+        depois: "Gota 3D animada e rolagem suave que remetem ao clima da serra",
+      },
+    ],
+    numeros: [
+      { valor: "140 KB", rotulo: "a página inteira" },
+      { valor: "0", rotulo: "app ou cadastro" },
+      { valor: "1 min", rotulo: "para atualizar um tratamento" },
+    ],
+    url: "https://orvalho.agilizaserranet.com",
+    dominio: "orvalho.agilizaserranet.com",
+    shot: projOrvalho,
+    shotMob: projOrvalhoMob,
   },
 ];
 
